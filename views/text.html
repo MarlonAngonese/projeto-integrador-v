@@ -1,0 +1,35 @@
+{% extends './layouts/base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/styles/base.css">
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-6 text-center">Anotações</h1>
+    <form onsubmit="sendText(event)">
+        <div class="">
+            <div class="">
+                <label>id</label>
+                <input type="text" name="" value="" id="id" class="form-control" readonly>
+            </div>
+            <div class="">
+                <label>Anotações</label>
+                <textarea name="text" id="text" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script src="/js/text.js" charset="utf-8"></script>
+{% endblock %}
