@@ -1,0 +1,87 @@
+{% extends './layouts/base.html' %}
+
+{% block content %}
+
+<span>Inserir produtos</span>
+
+<form onsubmit="insertProducts(event)">
+	<div class="">
+		<label>Categoria</label>
+		<select id="category" class="form-control">
+			<option value="">Selecione uma categoria</option>
+				{% for item in categories %}
+					<option value="{{ item._id }}">{{ item.name }}</option>
+				{% endfor %}
+		</select>
+	</div>
+
+	<div class="">
+		<label>Nome</label>
+		<input type="text" name="" value="" id="name" class="form-control">
+	</div>
+
+	<div class="">
+		<label>Preço</label>
+		<input type="number" name="" value="" id="price" class="form-control">
+	</div>
+    <br>
+
+	<div class="">
+		<label for="">Descrição</label>
+		<textarea class="form-control" id="description" rows="3"></textarea>
+	</div>
+
+	<div class="">
+		<label>URL</label>
+		<input type="url" name="url" value="" id="url" class="form-control">
+	</div>
+
+	<div class="">
+		<button type="submit" class="">Enviar</button>
+	</div>
+</form>
+
+
+{% if products | length > 0 %}
+<table class="table table-striped">
+  	<div class="mt-5">
+		<h2> Lista de produtos </h2>
+		<div id="list-products"></div>
+   </div>
+  	<thead>
+    	<tr>
+      	<th class="thcategoryId" scope="col">ID</th>
+      	<th class="thname" scope="col">Nome</th>
+      	<th class="thprice" scope="col">Preço</th>
+      	<th class="thdescription" scope="col">Descrição</th>
+      	<th class="thurl" scope="col">URL</th>
+    	</tr>
+  	</thead>
+  	{% for item in products %}
+  	<tbody>
+		<tr>
+			<td class="categoryId">{{ item.category }}</td>
+			<td class="nameitem">{{ item.name }}</td>
+			<td class="priceitem">{{ item.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) }}</td>
+			<td class="descriptionitem">{{ item.description }}</td>
+			<td class="urlitem">{{ item.url }}</td>
+			<td><button class="btn-remove" id="{{ item._id }}">Excluir</button></td>
+		</tr>
+  	</tbody>
+   {% endfor %}
+</table>
+{% else %}
+<div class="">
+  <h5 class="">Sem produtos </h5>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block title %}
+  Inserir Produtos
+{% endblock %}
+
+{% block script %}
+  <script src="/js/insertProducts.js" charset="utf-8"></script>
+{% endblock %}
