@@ -4,8 +4,6 @@ const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const database = require('../mongodb/database')
 const mongoose = require('mongoose');
-const ClientsSchema = require('../schemas/clients');
-const TextsSchema = require('../schemas/texts');
 const routes = require('../front-routes/routes');
 
 // SERVER CONFIGURATION
@@ -35,6 +33,3 @@ database();
 
 // EXTERNAL ROUTES
 app.use('/', routes);
-
-//Comentario que será commitado
-//dsfidsgofsdhinosd
