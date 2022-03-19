@@ -25,6 +25,18 @@
             </div>
         </div>
     </form>
+
+    <br>
+    <span>Textos</span>
+    <ul class="">
+		{% for item in texts %}
+		<li>
+			<p class="" title="{{ item.name }}">{{ item.info }}</p>
+		</li>
+		{% endfor %}
+	</ul>
+
+
 {% endblock %}
 
 {% block script %}
