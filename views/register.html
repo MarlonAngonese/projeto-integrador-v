@@ -1,0 +1,80 @@
+{% extends './layouts/base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/styles/base.css">
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-6 text-center">Cadastre-se</h1>
+    <form onsubmit="send(event)">
+        <div class="">
+            <!-- <div class="">
+                <label>id</label>
+                <input type="text" name="" value="" id="id" class="form-control" readonly>
+            </div> -->
+            <div class="">
+                <label>Nome</label>
+                <input type="text" name="" value="" id="name" class="form-control">
+            </div>
+            <div class="">
+                <label>Sobrenome</label>
+                <input type="text" name="" value="" id="lastname" class="form-control">
+            </div>
+            <div class="">
+                <label>CPF</label>
+                <input type="text" name="" value="" id="cpf" class="form-control">
+            </div>
+            <div class="">
+                <label>E-mail</label>
+                <input type="email" name="" value="" id="email" class="form-control">
+            </div>
+            <div class="">
+                <label>Data de nascimento</label>
+                <input type="text" name="" value="" id="birthday" class="form-control">
+            </div>
+            <div class="">
+                <label>CEP</label>
+                <input type="text" name="" value="" id="cep" class="form-control">
+            </div>
+            <div class="">
+                <label>Bairro</label>
+                <input type="text" name="" value="" id="neighborhood" class="form-control">
+            </div>
+            <div class="">
+                <label>Rua</label>
+                <input type="text" name="" value="" id="street" class="form-control">
+            </div>
+            <div class="">
+                <label>Number</label>
+                <input type="number" name="" value="" id="number" class="form-control">
+            </div>
+            <div class="">
+                <label>Complemento</label>
+                <input type="text" name="" value="" id="complement" class="form-control">
+            </div>
+            <div class="">
+                <label>Senha</label>
+                <input type="password" name="" value="" id="password" class="form-control">
+            </div>
+            <div class="">
+                <label>Confirmar senha</label>
+                <input type="password" name="" value="" id="confirmPassword" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">Enviar</button>
+            </div> 
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script src="/js/register.js" charset="utf-8"></script>
+{% endblock %}

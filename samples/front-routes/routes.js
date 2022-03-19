@@ -7,9 +7,9 @@ router.get('/', (req, res) => {
 });
   
 router.get('/form', (req, res) => {
-    res.render('form.html');
-});
-
+    res.render('register.html');
+}); 
+ 
 router.get('/text', (req, res) => {
     res.render('text.html');
 });
