@@ -5,8 +5,9 @@ const nunjucks = require('nunjucks');
 const database = require('../mongodb/database')
 const mongoose = require('mongoose');
 const routes = require('../front-routes/routes');
-
 const session = require('express-session');
+const ClientsSchema = require('../schemas/clients');
+const clients = require('../schemas/clients');
 
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3000;
@@ -30,7 +31,7 @@ app.listen(port, () => {
   console.log('LISTEN ON PORT ' + port);
 });
 
-//Configure SESSION
+// CONFIGURE SESSION
 app.use(session({
   secret: 'kiosndfw8h8348urg2h8bfnedu',
   resave: true,
@@ -39,6 +40,9 @@ app.use(session({
 
 // MONGO CONNECTION
 database();
+
+// SCHEMAS
+const Clients = mongoose.model('clients', ClientsSchema);
 
 // EXTERNAL ROUTES
 app.use('/', routes);
