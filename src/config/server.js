@@ -6,6 +6,8 @@ const database = require('../mongodb/database')
 const mongoose = require('mongoose');
 const routes = require('../front-routes/routes');
 
+const session = require('express-session');
+
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3000;
 
@@ -27,6 +29,13 @@ app.use(express.static('public'));
 app.listen(port, () => {
   console.log('LISTEN ON PORT ' + port);
 });
+
+//Configure SESSION
+app.use(session({
+  secret: 'kiosndfw8h8348urg2h8bfnedu',
+  resave: true,
+  saveUninitialized: true,
+}));
 
 // MONGO CONNECTION
 database();
