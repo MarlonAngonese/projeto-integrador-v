@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 const routes = require('../front-routes/routes');
 const session = require('express-session');
 const ClientsSchema = require('../schemas/clients');
-const clients = require('../schemas/clients');
 
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3000;
@@ -46,3 +45,10 @@ const Clients = mongoose.model('clients', ClientsSchema);
 
 // EXTERNAL ROUTES
 app.use('/', routes);
+
+app.post('/login', (req, res) => {
+
+  req.session.user = req.body.user;
+
+  res.send(req.session);
+})
