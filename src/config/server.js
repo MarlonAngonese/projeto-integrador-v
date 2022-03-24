@@ -8,6 +8,7 @@ const routes = require('../front-routes/routes');
 const session = require('express-session');
 const ClientsSchema = require('../schemas/clients');
 const CategoriesSchema = require('../schemas/categories');
+const md5 = require('md5');
 
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3000;
@@ -58,6 +59,14 @@ app.post('/login', (req, res) => {
 // POST CLIENT
 app.post('/client', (req, res) => {
   var client = new Clients(req.body);
+
+  if (client.password && client.password.length > 0) {
+    client.password = md5(client.password);
+
+    if (client.confirmPassword && client.confirmPassword.length > 0) {
+      client.confirmPassword = md5(client.confirmPassword);
+    }
+  }
 
   client.save((err, client) => {
     console.info(client.name + ' salvo');
