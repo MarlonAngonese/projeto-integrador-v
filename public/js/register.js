@@ -3,6 +3,7 @@ function send (event) {
     event.preventDefault();
     console.log(event);
   
+    // Get input values
     var name = $("#name").val();
     var lastname = $("#lastname").val();
     var cpf = $("#cpf").val();
@@ -16,8 +17,6 @@ function send (event) {
     var password = $("#password").val();
     var confirmPassword = $("#confirmPassword").val();
 
-
-  
     // Validations
     if (name == "") {
         toastr["error"]("Campo nome obrigatório");
@@ -68,6 +67,7 @@ function send (event) {
         return
     }
   
+    // Create data payload
     var data = {
         name: name,
         lastname: lastname,
@@ -83,7 +83,7 @@ function send (event) {
         confirmPassword: confirmPassword
     }
 
- 
+    // Front router to post new client on MongoDB
     $.post('/client', data, function (res) {
         if(res === 'ok') {
             toastr["success"]("Cadastro realizado com sucesso!");
