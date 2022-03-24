@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.render('index.html');
 });
   
-router.get('/form', (req, res) => {
+router.get('/register', (req, res) => {
     res.render('register.html');
 }); 
  

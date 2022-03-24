@@ -9,6 +9,7 @@ const TextsSchema = require('../schemas/texts');
 const CategoriesSchema = require('../schemas/categories');
 const ProductsSchema = require('../schemas/products');
 const routes = require('../front-routes/routes');
+const md5 = require('md5');
 
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3000;
@@ -76,6 +77,14 @@ app.get('/c/:slug', (req, res) => {
 // POST CLIENT
 app.post('/client', (req, res) => {
   var client = new Clients(req.body);
+
+  if (client.password && client.password.length > 0) {
+    client.password = md5(client.password);
+
+    if (client.confirmPassword && client.confirmPassword.length > 0) {
+      client.confirmPassword = md5(client.confirmPassword);
+    }
+  }
 
   client.save((err, client) => {
     console.info(client.name + ' salvo');
