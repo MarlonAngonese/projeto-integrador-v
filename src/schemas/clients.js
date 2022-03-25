@@ -1,6 +1,7 @@
 const {Schema} = require('mongoose');
 
 module.exports = new Schema({
+    username: String,
     name: String,
     lastname: String,
     cpf: String,

@@ -49,12 +49,20 @@ const Categories = mongoose.model('categories', CategoriesSchema);
 // EXTERNAL ROUTES
 app.use('/', routes);
 
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
 
-  req.session.user = req.body.user;
+  resultado = await Clients.find({ //pesquisa em clientes os dados do formulario
+    username: req.body.username,
+    password: md5(req.body.password) //pesquisa senha criptografada
+  }).limit(1).exec();
 
-  res.send(req.session);
-})
+  if (resultado.length == 0 ) { //confere se encontrou pelo menos um usuario com os dados do login 
+    res.send("empty");  
+  } else {
+    res.send(resultado);
+  }
+  
+}); 
 
 // POST CLIENT
 app.post('/client', (req, res) => {
