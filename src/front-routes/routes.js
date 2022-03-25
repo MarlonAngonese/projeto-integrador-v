@@ -34,7 +34,4 @@ router.get('/cart', (req, res) => {
     res.render('cart.html');
 });
 
-
-module.exports = router;
-
 module.exports = router;
