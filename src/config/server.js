@@ -49,6 +49,15 @@ const Categories = mongoose.model('categories', CategoriesSchema);
 // EXTERNAL ROUTES
 app.use('/', routes);
 
+// MIDDLEWARE
+const authChecker = (req, res, next) => {
+  if (req.session.client) {
+      next()
+  } else {
+      res.redirect('/login')
+  }
+}
+
 app.post('/login', async (req, res) => {
 
   resultado = await Clients.find({ //pesquisa em clientes os dados do formulario
@@ -59,9 +68,9 @@ app.post('/login', async (req, res) => {
   if (resultado.length == 0 ) { //confere se encontrou pelo menos um usuario com os dados do login 
     res.send("empty");  
   } else {
+    req.session.client = resultado;
     res.send(resultado);
   }
-  
 }); 
 
 // POST CLIENT
