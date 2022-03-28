@@ -10,12 +10,12 @@ const CategoriesSchema = require('../schemas/categories');
 const ProductsSchema = require('../schemas/products');
 const routes = require('../front-routes/routes');
 const md5 = require('md5');
-
+ 
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3000;
 
 let env = nunjucks.configure('views', {
-  autoescape: true,
+  autoescape: true, 
   express: app
 });
 
@@ -41,6 +41,20 @@ const Clients = mongoose.model('clients', ClientsSchema);
 const Texts = mongoose.model('texts', TextsSchema);
 const Categories = mongoose.model('categories', CategoriesSchema);
 const Products = mongoose.model('products', ProductsSchema);
+
+// SEARCH PRODUCTS
+app.get('/search', (req, res) => {
+  const query = req.query.q;
+  let cond = [];
+  let queryObj = {};
+
+  if (query && query.length > 0) {
+    queryObj = {"name": { "$regex": query, "$options": "i" }};
+  }
+  Products.find(queryObj).sort([cond]).exec((err, products) => {
+     res.render('products.html', {products: products, q: query});
+ });
+});
 
 // CONFIG CATEGORIES
 app.use((req, res, next) => {
