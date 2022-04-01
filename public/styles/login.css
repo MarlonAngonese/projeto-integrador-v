@@ -1,0 +1,123 @@
+body {
+
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+
+}
+
+#login {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+   
+}
+
+.card {
+
+    font-family: 'Google Sans', 'Google Sans Text', Roboto, sans-serif;
+
+    font-size: .850rem;
+    font-weight: 500;
+    padding: 40px;
+    min-width: 3.375rem;
+    padding: 0 1.5rem;
+    white-space: nowrap;
+}
+
+.card-header {
+
+    color: #1f1f1f;
+    display: inline-block;
+    font-size: .875rem;
+    font-weight: 500;
+    padding: 1.125rem 0;
+    padding-bottom: 40px;
+    
+
+}
+
+.card-header::after {
+
+    content: "";
+    width: 100px;
+    height: 1px;
+    background-color: #fff;
+    display: block;
+    margin-top: -17px;
+    margin-left: -5px;
+
+}
+
+.card-content label {
+
+    color: #000;
+    font-size: 14px;
+    opacity: 0.8;
+
+}
+
+.card-content-area {
+
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    padding:10px;
+
+}
+
+.card-content-area input {
+
+    font-size: 13px;
+    margin-top: 0px;
+    padding: 0 5px;
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid #e1e1e1;
+    outline: none;
+    width: 100%;
+    
+}
+
+.card-footer {
+
+    display: flex;
+    direction: ltr;
+    flex-direction: column;
+
+}
+
+form input[type=submit]{/*aqui é para atacar o submit*/
+    width: 100%;
+    height: 40px;
+    background-color: #0067ee;
+    border:none;
+    border-radius: 5px;
+    color:#e1e1e1;
+    margin: 10px 0;
+}
+
+.card-footer .register{
+
+    text-align: left;
+    margin-top: 5%;
+    text-decoration:none;
+    font-size: 12px;
+    opacity: 0.8px;
+    color: #fff;
+   
+}
+
+.card-footer .create{
+
+    text-align: right;
+    margin-top: 5%;
+    text-decoration:none;
+    font-size: 12px;
+    opacity: 0.8px;
+    color: #fff;
+   
+}
+

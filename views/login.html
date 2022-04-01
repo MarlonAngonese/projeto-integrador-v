@@ -1,0 +1,75 @@
+{% extends './layouts/base.html' %}
+
+{% block title %}<title>Tela de Login</title>{% endblock %}
+
+{% block styles %}<link rel="stylesheet" href="/styles/login.css">{% endblock %}
+
+    <!-- aqui é a criação do usuario e login-->
+
+{% block content %}
+<div id="login">
+    <form class="card" action="/login" method="post">
+        <div class="card-header">
+            <h2> Faça login para continuar </h2>
+        </div>
+
+        <div class="card-content">
+
+            <div class="card-content-area">
+
+                <div class="nome_usuario">
+
+                    <h4 class="Usuario">Email</h4>
+                    <input type="text" name="email" placeholder="" required>
+
+                    <h4 class="Senha">Senha</h4>
+                    <input type="password" name="password" required>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- aqui é onde clica para entrar em sua conta botao entrar-->
+
+        <div class="connect">
+
+            <div>
+
+                <input type="submit" name="acao" value="Entrar">
+
+            </div>
+
+            <div>
+
+                <input type="checkbox" name="conectado" value="conectado"><span>Mantenha-me conectado</span>
+
+            </div>
+
+        </div>
+
+        <!-- aqui é a opção quando esqueceu a senha ou quer criar um cadastro-->
+
+        <div class="card-footer">
+
+            <div class="register">
+
+                <a href=""><span>Esqueci minha senha!</span></a>
+
+                <div>
+
+                    <div class="create">
+
+                        <div>
+                            <a href=""><span>Criar conta</span></a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+    </form>
+
+</div>
+{% endblock %}
