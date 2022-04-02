@@ -61,7 +61,7 @@ const authChecker = (req, res, next) => {
 app.post('/login', async (req, res) => {
 
   resultado = await Clients.find({ //pesquisa em clientes os dados do formulario
-    username: req.body.username,
+    email: req.body.email,
     password: md5(req.body.password) //pesquisa senha criptografada
   }).limit(1).exec();
 
