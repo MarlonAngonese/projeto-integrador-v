@@ -5,14 +5,14 @@ const nunjucks = require('nunjucks');
 const database = require('../mongodb/database')
 const mongoose = require('mongoose');
 const ClientsSchema = require('../schemas/clients');
-const TextsSchema = require('../schemas/texts');
+const ContactsSchema = require('../schemas/contact');
 const CategoriesSchema = require('../schemas/categories');
 const ProductsSchema = require('../schemas/products');
 const routes = require('../front-routes/routes');
 const md5 = require('md5');
  
 // SERVER CONFIGURATION
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3030;
 
 let env = nunjucks.configure('views', {
   autoescape: true, 
@@ -38,7 +38,7 @@ database();
       
 // SCHEMAS
 const Clients = mongoose.model('clients', ClientsSchema);
-const Texts = mongoose.model('texts', TextsSchema);
+const Contacts = mongoose.model('contact', ContactsSchema);
 const Categories = mongoose.model('categories', CategoriesSchema);
 const Products = mongoose.model('products', ProductsSchema);
 
@@ -110,25 +110,25 @@ app.post('/client', (req, res) => {
   })
 });  
 
-//GET TEXTS ANNOTATION
-app.get('/text', (req, res) => {
-  Texts.find((err, texts) => {
-    res.render('text.html', {texts: texts});
-  });
-});
+// POST CONTACT 
+app.post('/contact', (req, res) => {
+  try {
+    var email = req.body.email;
+    var subject = req.body.subject;
+    var description = req.body.description;
 
-// POST TEXT ANNOTATION
-app.post('/text', (req, res) => {
-  var text = new Texts(req.body);
-
-  text.save((err, text) => {
-    console.info(text.info + ' salvo');
-    res.send('ok');
-
-    if(err) {
-      console.error(err)
+    if (email && subject && description) {
+      var contact = new Contacts(req.body);
+      contact.save((err, contact) => {
+        console.info(contact.email + ' salvo');
+        return res.status(200).json({ success: true, result: contact, status: 200 });
+      })
+    } else {
+      throw 'Ops, ocorreu um erro ao enviar, por favor, tente mais tarde.'
     }
-  })
+  } catch (error) {
+    return res.json({ success: false, message: error, status: 500 });
+  }
 }); 
 
 // POST CATEGORY

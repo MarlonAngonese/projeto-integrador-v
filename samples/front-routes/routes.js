@@ -10,8 +10,8 @@ router.get('/register', (req, res) => {
     res.render('register.html');
 }); 
  
-router.get('/text', (req, res) => {
-    res.render('text.html');
+router.get('/contact', (req, res) => {
+    res.render('contact.html');
 });
 
 router.get('/insertCategories', (req, res) => {
