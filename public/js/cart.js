@@ -96,3 +96,13 @@ function showCart () {
 $(document).ready(function () {
   showCart();
 })
+
+function calculateCep() {
+  var cep = $("#cep").val();
+  
+  min = Math.ceil(100);
+  max = Math.floor(200);
+  var value = Math.floor(Math.random() * (max - min + 1)) + min;
+  
+  $(".valueCep").text(toBrDigits(value));
+}
