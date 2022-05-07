@@ -34,5 +34,13 @@ router.get('/cart', (req, res) => {
     res.render('cart.html');
 });
 
+router.get('/checkout', (req, res) => {
+    console.log(req.session);
+    res.render('checkout.html', {client: req.session.client});
+});
+
+router.get('/login', (req, res) => {
+    res.render('login.html');
+});
 
 module.exports = router;

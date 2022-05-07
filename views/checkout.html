@@ -1,0 +1,30 @@
+{% extends './layouts/base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/styles/base.css">
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-6 text-center">checkout</h1>
+
+    <div class="">
+        <div class="">
+          <h5 class="mb-3">Meus produtos</h5>
+          <div id="cart" >
+          </div>
+        </div>
+      </div>
+
+      <div>
+          <span>nome: {{client.name}}</span>
+      </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script src="/js/checkout.js" charset="utf-8"></script>
+{% endblock %}

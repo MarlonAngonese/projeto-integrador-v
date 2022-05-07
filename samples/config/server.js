@@ -10,6 +10,7 @@ const CategoriesSchema = require('../schemas/categories');
 const ProductsSchema = require('../schemas/products');
 const routes = require('../front-routes/routes');
 const md5 = require('md5');
+const session = require('express-session');
  
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3030;
@@ -32,6 +33,13 @@ app.use(express.static('public'));
 app.listen(port, () => {
   console.log('LISTEN ON PORT ' + port);
 });
+
+// CONFIGURE SESSION
+app.use(session({
+  secret: 'kiosndfw8h8348urg2h8bfnedu',
+  resave: true,
+  saveUninitialized: true,
+}));
 
 // MONGO CONNECTION
 database();
@@ -88,6 +96,31 @@ app.get('/c/:slug', (req, res) => {
     });
 });
 
+// MIDDLEWARE
+const authChecker = (req, res, next) => {
+  if (req.session.client) {
+      next()
+  } else {
+      res.redirect('/login')
+  }
+}
+
+app.post('/login', async (req, res) => {
+
+  resultado = await Clients.find({ //pesquisa em clientes os dados do formulario
+    email: req.body.email,
+    password: md5(req.body.password) //pesquisa senha criptografada
+  }).limit(1).exec();
+
+  if (resultado.length == 0 ) { //confere se encontrou pelo menos um usuario com os dados do login 
+    res.send("empty");  
+  } else {
+    req.session.client = resultado;
+    console.log(req.session.client);
+    res.send(resultado);
+  }
+}); 
+
 // POST CLIENT
 app.post('/client', (req, res) => {
   var client = new Clients(req.body);
@@ -108,7 +141,11 @@ app.post('/client', (req, res) => {
       console.error(err)
     }
   })
-});  
+});
+
+app.get('/testeee', (req, res) => {
+  res.send(req.session.client)
+})
 
 // POST CONTACT 
 app.post('/contact', (req, res) => {

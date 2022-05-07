@@ -9,6 +9,20 @@
     </div>
   </div>
 </div>
+
+  <div class="form-group">
+    <!-- <label for="cep">Email address</label> -->
+    <input type="text" class="form-control" id="cep" aria-describedby="desc" placeholder="Insira seu cep">
+    <small id="desc" class="form-text text-muted">Insira seu cep para calcular o frete.</small>
+  </div>
+
+  <span class="valueCep"></span>
+
+  <button class="btn btn-primary" onclick="calculateCep()">Calcular</button>
+<br></br>
+<a href="/checkout">
+  <button type="button" class="btn btn-primary">Finalizar compra</button>
+</a>
 {% endblock %}
 
 {% block title %}
