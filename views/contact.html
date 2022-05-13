@@ -6,47 +6,33 @@
 {% endblock %}
 
 {% block content %}
+
+<div class="container" style="margin-top: 2%">
     <h1 class="display-6 text-center">Entre em contato</h1>
-
-    <form>
-        <div class="form-group">
-          <label for="formGroupExampleInput">Example label</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-        </div>
-        <div class="form-group">
-          <label for="formGroupExampleInput2">Another label</label>
-          <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-        </div>
-    </form>
-    
     <form onsubmit="sendContact(event)">
-        <div class="">
-            <div class="">
-                <label>Email</label>
-                <input type="email" name="email" id="email">
-            </div>
+        
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email </label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">    
+
         </div>
 
-        <div class="">
-            <div class="">
-                <label>Assunto</label>
-                <input name="subject" id="subject">
-            </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Assunto</label>
+            <input class="form-control" id="exampleFormControlTextarea1">
         </div>
 
-        <div class="">
-            <div class="">
-                <label>Descrição</label>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
-            </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
         </div>
 
-        <div class="row">
-            <div class="col-12">
-                <button type="submit" class="btn btn-success">Enviar</button>
-            </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Enviar</button>
         </div>
     </form>
+</div>
+
 
     <!-- <br>
     <span>Textos</span>
