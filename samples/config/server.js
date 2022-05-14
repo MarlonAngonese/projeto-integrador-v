@@ -201,19 +201,29 @@ app.get('/categories', (req, res) => {
 // POST PRODUCT
 app.post('/insertProducts', uploader.array('images'), async (req, res) => {
 
-  if (req.files) {
+  try {
+    if (!req.files) {
+      throw "Você precisa fazer upload de um arquivo de imagem válido"
+    }
 
-    //Faz upload das imagens recebidas para o google drive
-    var results = await uploadGoogleDrive(req.files)
-    req.body.url = results;
+    //Send image to google drive
+    let result = await uploadGoogleDrive(req.files);
+
+    if (!result) {
+      throw "Não foi possível fazer o upload da imagem no Google Drive"
+    }
+
+    req.body.url = result;
+    console.log(req.body);
+
+    let product = new Products(req.body);
+    product.save();
+
+    res.redirect('/insertProducts');
+
+  } catch (err) {
+    res.send(err);
   }
-
-  console.log(req.body);
-
-  var insertproducts = new Products(req.body);
-  insertproducts.save((err, insertproducts) => {
-    return res.redirect('/insertProducts');
-  })
 });
 
 // GET PRODUCTS

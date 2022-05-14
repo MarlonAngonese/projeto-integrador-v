@@ -34,7 +34,7 @@ const uploadFile = async (imgs) => {
                 fields: 'id'
             })
     
-            ids.push(response.data.id)
+            ids.push("https://drive.google.com/uc?export=view&id=" + response.data.id)
 
             //Apagar a imagem do TMP
             fs.unlinkSync(img.path)

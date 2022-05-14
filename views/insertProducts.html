@@ -10,7 +10,7 @@
     <form method="post" action="/insertProducts" enctype="multipart/form-data">
 
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Categoria </label>
+            <label class="form-label">Categoria</label>
             <select id="category" class="form-control">
                 <option value="">Selecione uma categoria</option>
                     {% for item in categories %}
@@ -21,18 +21,18 @@
 
         <div class="mb-3">
             <label>Nome</label>
-            <input type="text" name="" value="" id="name" class="form-control">
+            <input type="text" name="name" id="name" class="form-control">
         </div>
 
         <div class="mb-3">
             <label>Preço</label>
-            <input type="number" name="" value="" id="price" class="form-control">
+            <input type="number" name="price" id="price" class="form-control">
         </div>
         <br>
 
         <div class="mb-3">
             <label for="">Descrição</label>
-            <textarea class="form-control" id="description" rows="3"></textarea>
+            <textarea class="form-control" name="description" id="description" rows="3"></textarea>
         </div>
 
         <div class="mb-3">
