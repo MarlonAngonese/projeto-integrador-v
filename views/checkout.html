@@ -1,24 +1,57 @@
 {% extends './layouts/base.html' %}
 
+{% block title %}
+Checkout
+{% endblock %}
+
 {% block styles %}
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/checkout.css">
 {% endblock %}
 
 {% block content %}
-    <h1 class="display-6 text-center">checkout</h1>
+    <h1 class="display-6 text-center">Checkout</h1>
 
-    <div class="">
-        <div class="">
-          <h5 class="mb-3">Meus produtos</h5>
-          <div id="cart" >
-          </div>
+<div class="container">
+
+    <div class="data">
+        <div class="data-left">
+            <div class="data-client">
+                <h5>Dados do cliente</h5>
+                <span>Nome: Renan</span>
+                <span>Sobrenome: Andreolla</span>
+                <span>CPF: 098789123-34</span>
+                <span>email: renanandreolla@teste.com</span>
+            </div>
+      
+            <div class="data-address">
+              <h5>Endereço</h5>
+              <span>Cep: 99700-000</span>
+              <span>Rua: Rua Olavio Bilac</span>
+              <span>Bairro: Bairro Teste</span>
+              <span>Numero: Numero Teste</span>
+              <span>Complemento: Apto. 12</span>
+            </div>
         </div>
-      </div>
 
-      <div>
-          <span>nome: {{client.name}}</span>
-      </div>
+        <div class="data-right">
+            <div class="">
+                <div class="">
+                  <h5 class="mb-3 display-6 text-center">Meus produtos</h5>
+                  <div id="cart" >
+                  </div>
+                </div>
+            </div>
+        
+            <div>
+                <a href="/payment">
+                    <button class="btn btn-primary">Ir para o pagamento</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+</div>
 
 {% endblock %}
 

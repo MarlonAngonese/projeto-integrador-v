@@ -43,4 +43,11 @@ router.get('/login', (req, res) => {
     res.render('login.html');
 });
 
+router.get('/payment', (req, res) => {
+    res.render('payment.html');
+});
+
+router.get('/confirmation', (req, res) => {
+    res.render('confirmation.html');
+});
 module.exports = router;
