@@ -11,6 +11,9 @@ const ProductsSchema = require('../schemas/products');
 const routes = require('../front-routes/routes');
 const md5 = require('md5');
 const session = require('express-session');
+
+const uploader = require('../middleware/uploaderImg')
+const uploadGoogleDrive = require('../api/googledrive/auth')
  
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3030;
@@ -21,7 +24,7 @@ let env = nunjucks.configure('views', {
 });
 
 app.set('engine', env);
-require('useful-nunjucks-filters')(env);
+require('useful-nunjucks-filters')(env); 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({   // to support URL-encoded bodies
@@ -196,16 +199,25 @@ app.get('/categories', (req, res) => {
 
 
 // POST PRODUCT
-app.post('/insertproducts', (req, res) => {
+app.post('/insertProducts', uploader.array('images'), async (req, res) => {
+
+  if (req.files) {
+
+    //Faz upload das imagens recebidas para o google drive
+    var results = await uploadGoogleDrive(req.files)
+    req.body.url = results;
+  }
+
+  console.log(req.body);
+
   var insertproducts = new Products(req.body);
   insertproducts.save((err, insertproducts) => {
-    console.info('Produto ' + insertproducts.name + ' salvo');
-    res.send('ok');
+    return res.redirect('/insertProducts');
   })
 });
 
 // GET PRODUCTS
-app.get('/insertproducts', (req, res) => {
+app.get('/insertProducts', (req, res) => {
   Products.find((err, products) => {
       Categories.find().sort('name').exec((err, categories) => {
       res.render('insertProducts.html', {products: products, categories: categories});

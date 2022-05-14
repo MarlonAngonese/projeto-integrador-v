@@ -4,7 +4,7 @@
 
 <span>Inserir produtos</span>
 
-<form onsubmit="insertProducts(event)">
+<form method="post" action="/insertProducts" enctype="multipart/form-data">
 	<div class="">
 		<label>Categoria</label>
 		<select id="category" class="form-control">
@@ -17,23 +17,23 @@
 
 	<div class="">
 		<label>Nome</label>
-		<input type="text" name="" value="" id="name" class="form-control">
+		<input type="text" name="name" value="" id="name" class="form-control">
 	</div>
 
 	<div class="">
 		<label>Preço</label>
-		<input type="number" name="" value="" id="price" class="form-control">
+		<input type="number" name="price" value="" id="price" class="form-control">
 	</div>
     <br>
 
 	<div class="">
 		<label for="">Descrição</label>
-		<textarea class="form-control" id="description" rows="3"></textarea>
+		<textarea class="form-control" id="description" name="description" rows="3"></textarea>
 	</div>
 
-	<div class="">
-		<label>URL</label>
-		<input type="url" name="url" value="" id="url" class="form-control">
+	<div class="mb-3">
+		<label for="images" class="form-label">Imagens</label>
+		<input id="images" class="form-control" type="file" name="images" multiple>
 	</div>
 
 	<div class="">
@@ -80,8 +80,4 @@
 
 {% block title %}
   Inserir Produtos
-{% endblock %}
-
-{% block script %}
-  <script src="/js/insertProducts.js" charset="utf-8"></script>
 {% endblock %}
