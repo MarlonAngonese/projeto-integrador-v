@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.cart-content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.cep-content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+.calc-shipping {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.calc-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.calc-button button {
+    display: flex;
+    width: 30%;
+    justify-content: center;
+}
+
+.go-to-checkout {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.go-to-checkout a {
+    display: flex;
+    width: 30%;
+    justify-content: center;
+}
+
+.go-to-checkout button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

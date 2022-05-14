@@ -53,7 +53,7 @@ function showCart () {
     var listCart = $('<ul class="list-unstyled"></ul>');
     var total = 0;
     for(var i in cart) {
-      var li = $('<li class="mb-5"></li>');
+      var li = $('<li class=""></li>');
       var add = $('<a class="btn btn-sm btn-outline-success" href>+</a>');
       var sub = $('<a class="btn btn-sm ml-1 btn-outline-danger" href>-</a>');
       var del = $('<a class="btn btn-sm ml-3 btn-danger" href>Excluir produto</a>');
@@ -104,5 +104,5 @@ function calculateCep() {
   max = Math.floor(200);
   var value = Math.floor(Math.random() * (max - min + 1)) + min;
   
-  $(".valueCep").text(toBrDigits(value));
+  $(".valueCep").text('Taxa de entrega: ' + toBrDigits(value));
 }

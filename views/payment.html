@@ -1,0 +1,113 @@
+{% extends './layouts/base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/styles/base.css">
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-6 text-center">Pagamento</h1>
+
+    <div>
+        <span>Selecione o método de pagamento</span>
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    BOLETO
+                    </button>
+                </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <span>Finalize seu pedido via boleto:</span>
+                    <a href="/confirmation">
+                        <button>Finalizar compra</button>
+                    </a>
+                </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    PIX
+                    </button>
+                </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <span>Realize seu pagamento escaneando o QR Code ou copie o código PIX:</span>
+                    <img height="150" width="150" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Link_pra_pagina_principal_da_Wikipedia-PT_em_codigo_QR_b.svg/1200px-Link_pra_pagina_principal_da_Wikipedia-PT_em_codigo_QR_b.svg.png" alt="">
+                    <a href="/confirmation">
+                        <button type="submit" class="btn btn-success">Finalizar compra</button>
+                    </a>
+                </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    CARTÃO DE CRÉDITO
+                    </button>
+                </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Número do cartão </label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1">    
+            
+                    </div>
+            
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Nome impresso no cartão</label>
+                        <input class="form-control" id="exampleFormControlTextarea1">
+                    </div>
+            
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Validade</label>
+                        <input class="form-control" id="exampleFormControlTextarea1">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Código de segurança</label>
+                        <input class="form-control" id="exampleFormControlTextarea1">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Número de parcelas</label>
+                        <input class="form-control" id="exampleFormControlTextarea1" type="number">
+                    </div>
+            
+                    <div class="mb-3">
+                        <a href="/confirmation">
+                            <button type="submit" class="btn btn-success">Finalizar compra</button>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="">
+          <h5 class="mb-3">Meus produtos</h5>
+          <div id="cart" >
+          </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script src="/js/payment.js" charset="utf-8"></script>
+{% endblock %}

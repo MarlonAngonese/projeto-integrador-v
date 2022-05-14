@@ -6,28 +6,13 @@ function toBrDigits (number) {
     return number.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' });
 }
 
-function getClientInfo() {
-    // $.ajax({
-    //     url: "/login",
-    //     method: 'GET',
-    //     success: function(response) {
-    //       if (response) {
-    //         console.log("success", response)
-    //       }
-    //     },
-    //     error: function(erro) {
-    //         console.log("erro", erro);
-    //     }
-    //   });
-}
-
 function showItemsCheckout () {
     if (cart !== null) {
       var listCart = $('<ul class="list-unstyled"></ul>');
       var total = 0;
 
       for(var i in cart) {
-        var li = $('<li class=""></li>');
+        var li = $('<li class="mb-5"></li>');
   
         li.html(
           '<h6>' + cart[i].name + '</h6>' +
@@ -50,5 +35,4 @@ function showItemsCheckout () {
 
 $(document).ready(function () {
     showItemsCheckout();
-    getClientInfo();
 });
