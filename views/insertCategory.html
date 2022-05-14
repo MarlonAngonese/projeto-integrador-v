@@ -1,46 +1,57 @@
 {% extends './layouts/base.html' %}
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/styles/base.css">
 {% block content %}
 
-<span>INSERIR CATEGORIAS</span>
+<div class="container" style="margin-top: 2%">
+
+	<h2 class="display-6 text-center">INSERIR CATEGORIAS</h2>
 <form onsubmit="insertCategories(event)">
-	<div class="">
-		<label>Nome</label>
+
+	<div class="mb-3">
+		<label for="exampleFormControlInput1" class="form-label">Nome </label>
 		<input type="text" name="" value="" id="name" class="form-control">
 	</div>
+
 	<div class="">
-		<label>Categoria</label>
+		<label for="exampleFormControlTextarea1" class="form-label">Categoria</label>
 		<input type="text" name="" value="" id="category" class="form-control">
 	</div>
+
 	<br>
 	<div class="">
-		<button type="submit" class="">Enviar</button>
+		<button type="submit" class="btn btn-success">Enviar</button>
 	</div>
+
 </form>
 <br>
 
 <table class="table table-striped">
 	<div class="mt-5">
-		<h2> Lista de categorias </h2>
+		<h2 class="display-6 text-center">LISTA DE CATEGORIAS</h2>
 		<div id="list-products"></div>
 	</div>
 	<thead>
 		<tr>
 			<th scope="col">Nome</th>
-			<th scope="col">Categotria</th>
+			<th scope="col">Categoria</th>
+			<th scope="col">Actions</th>
 		</tr>
   	</thead>
 	
-	{% for item in categories %}
-	<tbody>
-		<tr>
+	  <tbody>
+		  {% for item in categories %}
+		  <tr>
 			<td>{{ item.name }}</td>
 			<td>{{ item.slug }}</td>
-			<td><button class="btn-remove" id="{{ item._id }}">Excluir</button></td>
+
+			
+			<td><button type="button" class="btn btn-outline-danger" id="{{ item._id }}">Excluir</button></td>
 		</tr>
+		{% endfor %}
 	</tbody>
-	{% endfor %}
 </table>
+</div>
 
 {% endblock %}
 {% block title %}
