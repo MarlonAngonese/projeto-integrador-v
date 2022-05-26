@@ -217,7 +217,9 @@ app.post('/insertProducts', uploader.array('images'), async (req, res) => {
     console.log(req.body);
 
     let product = new Products(req.body);
-    product.save();
+    product.save((err, product) => {
+      console.info('deu certo');
+    })
 
     res.redirect('/insertProducts');
 

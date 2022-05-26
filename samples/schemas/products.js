@@ -5,5 +5,5 @@ module.exports = new Schema({
 	name: String,
 	price: Number,
 	description: String,
-	url: Array,
+	url: Array
 });
