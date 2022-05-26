@@ -1,0 +1,12 @@
+.products {
+    list-style: none;
+}
+
+.products li {
+    float: left;
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 25%;
+    background-color: rgba(0,0,0,0.09);
+    border-right: 15px solid white;
+}

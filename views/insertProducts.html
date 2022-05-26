@@ -1,7 +1,14 @@
 {% extends './layouts/base.html' %}
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/styles/base.css">
+
 {% block content %}
+
+{% block title %}
+Inserir Produtos
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/styles/insertProducts.css">
+{% endblock %}
 
 <div class="container" style="margin-top: 2%">
 
@@ -70,7 +77,7 @@
                 <td class="priceitem">{{ item.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) }}</td>
                 <td class="descriptionitem">{{ item.description }}</td>
                 <td class="urlitem">{{ item.url }}</td>
-                <td><button type="button" class="btn btn-outline-danger" id="{{ item._id }}">Excluir</button></td>
+                <td><button type="button" class="btn btn-outline-danger btn-remove" id="{{ item._id }}">Excluir</button></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -79,16 +86,12 @@
     <div class="">
           <h5 class="">Sem produtos </h5>
     </div>
-    
-
-
     </div>
-
 
 {% endif %}
 
 {% endblock %}
 
-{% block title %}
-  Inserir Produtos
+{% block script %}
+  	<script src="/js/insertProducts.js" charset="utf-8"></script>
 {% endblock %}

@@ -12,7 +12,7 @@ function showItemsCheckout () {
       var total = 0;
 
       for(var i in cart) {
-        var li = $('<li class="mb-5"></li>');
+        var li = $('<li class=""></li>');
   
         li.html(
           '<h6>' + cart[i].name + '</h6>' +
@@ -25,7 +25,7 @@ function showItemsCheckout () {
       }
 
       $('#cart').html(listCart);
-      $('#cart').append('<p>Total <strong>' + toBrDigits(total) + '</strong></p>');
+      // $('#cart').append('<p>Total <strong>' + toBrDigits(total) + '</strong></p>');
 
       showCartItems();
     }
