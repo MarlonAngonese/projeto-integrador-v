@@ -1,8 +1,11 @@
 {% extends './layouts/base.html' %}
 
+{% block title %}
+Confirmação
+{% endblock %}
+
 {% block styles %}
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/confirmation.css">
 {% endblock %}
 
 {% block content %}
@@ -12,9 +15,9 @@
         <h2 style="color: purple;" class="display-6 text-center">Agradecemos pela sua compra, volte sempre!</h2>
     </div>
 
-    <div class="">
+    <div class="resume-products">
         <div class="">
-          <h5 class="mb-3">Meus produtos</h5>
+          <h5 class="mb-3">Meus produtos adquiridos: </h5>
           <div id="cart" >
           </div>
         </div>

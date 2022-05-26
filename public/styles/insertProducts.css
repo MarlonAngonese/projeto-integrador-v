@@ -1,0 +1,15 @@
+.descriptionitem {
+    max-height: 73px;
+    max-width: 450px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.urlitem {
+    max-height: 73px;
+    max-width: 410px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

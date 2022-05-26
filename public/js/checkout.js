@@ -27,20 +27,22 @@ function showItemsCheckout () {
       var total = 0;
 
       for(var i in cart) {
-        var li = $('<li class=""></li>');
+        var li = $('<li class="list-prd"></li>');
   
         li.html(
-          '<h6>' + cart[i].name + '</h6>' +
-          '<p>'+ toBrDigits(cart[i].price * cart[i].quantity) + '</p>' +
-          '<p class="">QUANTIDADE: ' + cart[i].quantity + '</p>'
-        ).append('<hr/>');
+          '<span class="product-name">' + cart[i].name + '(' + cart[i].quantity + ')' + '</span>' +
+          '<span class="product-price">'+ toBrDigits(cart[i].price * cart[i].quantity) + '</span>'
+          // '<span class="">Qtd: ' + cart[i].quantity + '</span>'
+        );
   
         listCart.append(li);
         total += cart[i].price * cart[i].quantity;
       }
 
       $('#cart').html(listCart);
-      $('#cart').append('<p>Total <strong>' + toBrDigits(total) + '</strong></p>');
+      $('#cart').append('<span class="total-cartt">Descontos <strong>' + toBrDigits(0) + '</strong></span>');
+      $('#cart').append('<span class="total-cartt">Subtotal <strong>' + toBrDigits(total) + '</strong></span>');
+      $('#cart').append('<span class="total-cartt">Total <strong>' + toBrDigits(total) + '</strong></span>');
 
       showCartItems();
     }

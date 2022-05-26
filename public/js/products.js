@@ -16,6 +16,9 @@ function addToCart (product) {
 	}
 	toastr["success"](product.name + " adicionado ao carrinho");
 	sessionStorage.setItem("cart", JSON.stringify(cart));
+	setTimeout(function(params) {
+		location.reload();
+	},1500);
 }
 
 $(document).ready(function () {
