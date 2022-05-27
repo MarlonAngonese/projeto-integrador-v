@@ -104,34 +104,67 @@ Checkout
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Número do cartão </label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1">    
-            
+                        <!-- <input type="email" class="form-control" id="exampleFormControlInput1">     -->
+                        <input type="tel" class="form-control" name="cc" id="cc" maxlength="19" />
                     </div>
             
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Nome impresso no cartão</label>
-                        <input class="form-control" id="exampleFormControlTextarea1">
+                        <input class="form-control" id="nameCard" maxlength="70">
                     </div>
             
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Validade</label>
-                        <input class="form-control" id="exampleFormControlTextarea1">
+                        <label for="exampleFormControlTextarea1" class="form-label">Mês de Validade</label>
+                        <!-- <input class="form-control" id="exampleFormControlTextarea1"> -->
+                        <select name="select" class="form-control" id="monthValidate">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Ano de Validade</label>
+                        <!-- <input class="form-control" id="exampleFormControlTextarea1"> -->
+                        <select name="select" class="form-control" id="yearValidate">
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Código de segurança</label>
-                        <input class="form-control" id="exampleFormControlTextarea1">
+                        <input class="form-control" id="securityCode" maxlength="3">
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Número de parcelas</label>
-                        <input class="form-control" id="exampleFormControlTextarea1" type="number">
+                        <label for="exampleFormControlTextarea1" class="form-label">Ano de Validade</label>
+                        <!-- <input class="form-control" id="exampleFormControlTextarea1"> -->
+                        <select name="select" class="form-control" id="instalments">
+                            <option value="1">1 parcela - a vista</option>
+                            <option value="2">2 parcelas</option>
+                            <option value="3">3 parcelas</option>
+                            <option value="4">4 parcelas</option>
+                            <option value="5">5 parcelas</option>
+                        </select>
                     </div>
             
                     <div class="mb-3">
-                        <a href="/confirmation">
-                            <button type="submit" class="btn btn-success">Finalizar com Cartão</button>
-                        </a>
+                      
+                            <button onclick="goToconfirmation()" type="submit" class="btn btn-success">Finalizar com Cartão</button>
+                       
                     </div>
                 </div>
                 </div>
