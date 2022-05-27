@@ -1,3 +1,21 @@
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "1000",
+  "hideDuration": "2000",
+  "timeOut": "1500",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
+
 var cart = sessionStorage.getItem("cart");
 cart = JSON.parse(cart);
 console.log(cart);
@@ -6,51 +24,141 @@ function toBrDigits (number) {
     return number.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' });
 }
 
-function getClientInfo() {
-    // $.ajax({
-    //     url: "/login",
-    //     method: 'GET',
-    //     success: function(response) {
-    //       if (response) {
-    //         console.log("success", response)
-    //       }
-    //     },
-    //     error: function(erro) {
-    //         console.log("erro", erro);
-    //     }
-    //   });
+function showItemsCheckout () {
+  if (cart !== null) {
+    var listCart = $('<ul class="list-unstyled"></ul>');
+    var total = 0;
+
+    for(var i in cart) {
+      var li = $('<li class="list-prd"></li>');
+
+      li.html(
+        '<span class="product-name">' + cart[i].name + '(' + cart[i].quantity + ')' + '</span>' +
+        '<span class="product-price">'+ toBrDigits(cart[i].price * cart[i].quantity) + '</span>'
+        // '<span class="">Qtd: ' + cart[i].quantity + '</span>'
+      );
+
+      listCart.append(li);
+      total += cart[i].price * cart[i].quantity;
+    }
+
+    $('#cart').html(listCart);
+    $('#cart').append('<span class="total-cartt">Descontos <strong>' + toBrDigits(0) + '</strong></span>');
+    $('#cart').append('<span class="total-cartt">Subtotal <strong>' + toBrDigits(total) + '</strong></span>');
+    $('#cart').append('<span class="total-cartt">Total <strong>' + toBrDigits(total) + '</strong></span>');
+
+    showCartItems();
+  }
 }
 
-function showItemsCheckout () {
-    if (cart !== null) {
-      var listCart = $('<ul class="list-unstyled"></ul>');
-      var total = 0;
+function mascara(o,f){
+  v_obj=o
+  v_fun=f
+  setTimeout("execmascara()",1)
+}
 
-      for(var i in cart) {
-        var li = $('<li class="list-prd"></li>');
-  
-        li.html(
-          '<span class="product-name">' + cart[i].name + '(' + cart[i].quantity + ')' + '</span>' +
-          '<span class="product-price">'+ toBrDigits(cart[i].price * cart[i].quantity) + '</span>'
-          // '<span class="">Qtd: ' + cart[i].quantity + '</span>'
-        );
-  
-        listCart.append(li);
-        total += cart[i].price * cart[i].quantity;
-      }
+function execmascara(){
+  v_obj.value=v_fun(v_obj.value)
+}
 
-      $('#cart').html(listCart);
-      $('#cart').append('<span class="total-cartt">Descontos <strong>' + toBrDigits(0) + '</strong></span>');
-      $('#cart').append('<span class="total-cartt">Subtotal <strong>' + toBrDigits(total) + '</strong></span>');
-      $('#cart').append('<span class="total-cartt">Total <strong>' + toBrDigits(total) + '</strong></span>');
+function mcc(v){
+  v=v.replace(/\D/g,"");
+  v=v.replace(/^(\d{4})(\d)/g,"$1 $2");
+  v=v.replace(/^(\d{4})\s(\d{4})(\d)/g,"$1 $2 $3");
+  v=v.replace(/^(\d{4})\s(\d{4})\s(\d{4})(\d)/g,"$1 $2 $3 $4");
+  return v;
+}
 
-      showCartItems();
-    }
+function id( el ){
+  return document.getElementById( el );
+}
+
+function goToconfirmation() {
+  var cardNumber = $("#cc").val();
+  var nameCard = $("#nameCard").val();
+  var monthValidate = $("#monthValidate").val();
+  var yearValidate = $("#yearValidate").val();
+  var securityCode = $("#securityCode").val();
+  var instalments = $("#instalments").val();
+  var approveOrder = false;
+
+  if (!cardNumber || cardNumber == "") {
+    $("#cc").addClass("invalid");
+    toastr["error"]("Número do cartão obrigatório");
+    approveOrder = false;
+    return;
+  } else {
+    approveOrder = true;
+    $("#cc").removeClass("invalid");
   }
 
-//
+  if (!nameCard || nameCard == "") {
+    $("#nameCard").addClass("invalid");
+    toastr["error"]("Nome no cartão obrigatório");
+    approveOrder = false;
+    return;
+  } else {
+    approveOrder = true;
+    $("#nameCard").removeClass("invalid");
+  }
+
+  if (!monthValidate || monthValidate == "") {
+    $("#monthValidate").addClass("invalid");
+    toastr["error"]("Mês de validade obrigatório");
+    approveOrder = false;
+    return;
+  } else {
+    approveOrder = true;
+    $("#monthValidate").removeClass("invalid");
+  }
+
+  if (!yearValidate || yearValidate == "") {
+    $("#yearValidate").addClass("invalid");
+    toastr["error"]("Ano de validade obrigatório");
+    approveOrder = false;
+    return;
+  } else {
+    approveOrder = true;
+    $("#yearValidate").removeClass("invalid");
+  }
+
+  if (!securityCode || securityCode == "" || securityCode.length != 3) {
+    $("#securityCode").addClass("invalid");
+    toastr["error"]("Código de segurança obrigatório");
+    approveOrder = false;
+    return;
+  } else {
+    approveOrder = true;
+    $("#securityCode").removeClass("invalid");
+  }
+
+  if (!instalments || instalments == "") {
+    $("#instalments").addClass("invalid");
+    toastr["error"]("Parcela obrigatório");
+    approveOrder = false;
+    return;
+  } else {
+    approveOrder = true;
+    $("#instalments").removeClass("invalid");
+  }
+
+  if (!approveOrder) {
+    toastr["error"]("Revise seu pedido, consulte entradas inválidas");
+  } else {
+    toastr["success"]("Compra realizada");
+    setTimeout(function(params) {
+      window.location.href = "/confirmation";
+    }, 2000);
+    
+  }
+}
 
 $(document).ready(function () {
     showItemsCheckout();
-    getClientInfo();
 });
+
+window.onload = function(){
+  id('cc').onkeypress = function(){
+    mascara( this, mcc );
+  }
+}
