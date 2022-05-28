@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./samples/config/server.js -e js,html",
-    "dev": "nodemon ./samples/config/server.js -e js,html",
+    "start": "nodemon ./src/config/server.js -e js,html",
+    "dev": "nodemon ./src/config/server.js -e js,html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

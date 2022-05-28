@@ -6,7 +6,7 @@ const GOOGLE_API_FOLDER_ID = '15qzobUzpVFw6g-OZqkksS325SoPaTVE4'
 const uploadFile = async (imgs) => {
     try {
         const auth = new google.auth.GoogleAuth({
-            keyFile: './samples/api/googledrive/key.json',
+            keyFile: './src/api/googledrive/key.json',
             scopes: ['https://www.googleapis.com/auth/drive']
         })
 
