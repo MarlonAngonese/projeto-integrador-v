@@ -47,24 +47,18 @@
 |           empty
 |           
 \---views
+    |   cart.html
+    |   checkout.html
+    |   confirmation.html
+    |   contact.html
     |   index.html
+    |   insertCategory.html
+    |   insertProducts.html
+    |   login.html
+    |   product.html
+    |   products.html
+    |   register.html
     |   
-    \---categories
-    |       add.category.html
-    |       
-    \---clients
-    |       cart.html
-    |       checkout.html
-    |       confirmation.html
-    |       contact.html
-    |       login.html
-    |       register.html
-    |       
     \---layouts
-    |       base.html
-    |       
-    \---products
-            add.products.html
-            list.products.html
-            view.product.html
-            
+            base.html
+        

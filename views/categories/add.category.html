@@ -1,4 +1,4 @@
-{% extends './layouts/base.html' %}
+{% extends '../layouts/base.html' %}
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/styles/base.css">
 {% block content %}
@@ -46,7 +46,7 @@
 			<td>{{ item.slug }}</td>
 
 			
-			<td><button type="button" class="btn btn-outline-danger" id="{{ item._id }}">Excluir</button></td>
+			<td><button type="button" class="btn btn-outline-danger btn-remove" id="{{ item._id }}">Excluir</button></td>
 		</tr>
 		{% endfor %}
 	</tbody>
