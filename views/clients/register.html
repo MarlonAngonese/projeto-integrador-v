@@ -1,93 +1,108 @@
-{% extends '../layouts/base.html' %} {% block styles %}
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/styles/base.css"> {% endblock %} {% block content %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% extends '../layouts/base.html' %}
+
+{% block title %}
+Cadastro
+{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/styles/register.css">
+{% endblock %}
+
+{% block content %}
+
 <h1 class="display-6 text-center">Cadastre-se</h1>
 
 <div class="container">
-
     <form onsubmit="send(event)">
-        <div class="">
-            <div class="row">
-                <div class="input-field col">
-                    <label for="name">Nome</label>
-                    <input type="text" name="" value="" id="name" class="form-control">
-                </div>
-                <div class="input-field col">
-                    <label for="lastname">Sobrenome</label>
-                    <input type="text" name="" value="" id="lastname" class="form-control">
-                </div>
+        <div class="row">
+            <div class="input-field col">
+                <label for="name">Nome</label>
+                <input type="text" id="name" class="form-control"  maxlength="50">
             </div>
-            <div class="row">
-                <div class="input-field col">
-                    <label for="cpf">CPF</label>
-                    <input type="text" name="" value="" id="cpf" class="form-control">
-                </div>
-                <div class="input-field col">
-                    <label for="email">E-mail</label>
-                    <input type="email" name="" value="" id="email" class="form-control">
-                </div>
+            <div class="input-field col">
+                <label for="lastname">Sobrenome</label>
+                <input type="text" id="lastname" class="form-control" maxlength="50">
             </div>
-            <div class="row">
-                <div class="input-field col">
-                    <label for="birthday">Data de nascimento</label>
-                    <input type="text" name="" value="" id="birthday" class="form-control">
-                </div>
-                <div class="input-field col">
-                    <label for="cep">CEP</label>
-                    <input type="text" name="" value="" id="cep" class="form-control">
-                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col">
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" class="form-control" placeholder="Ex: 01234567890">
+                <span class="small">Insira apenas números</span>
             </div>
-            <div class="row">
-                <div class="input-field col">
-                    <label for="neighborhood">Bairro</label>
-                    <input type="text" name="" value="" id="neighborhood" class="form-control">
-                </div>
-                <div class="input-field col">
-                    <label for="street">Rua</label>
-                    <input type="text" name="" value="" id="street" class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col">
-                    <label for="number">Número</label>
-                    <input type="number" name="" value="" id="number" class="form-control">
-                </div>
-                <div class="input-field col">
-                    <label for="complement">Complemento</label>
-                    <input type="text" name="" value="" id="complement" class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col">
-                    <label for="password">Senha</label>
-                    <input type="password" name="" value="" id="password" class="form-control">
-                </div>
-                <div class="input-field col">
-                    <label for="confirmPassword">Confirmar senha</label>
-                    <input type="password" name="" value="" id="confirmPassword" class="form-control">
-                </div>
+            <div class="input-field col">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" class="form-control" maxlength="50">
             </div>
         </div>
 
+
         <div class="row">
-            <div class="col-12">
-                <button type="submit" class="btn btn-light">Enviar</button>
+            <div class="input-field col">
+                <label for="birthday">Data de nascimento</label>
+                <input type="date" id="birthday" class="form-control">
             </div>
+            <div class="input-field col">
+                <label for="cellphone">Celular</label>
+                <input type="tel" id="cellphone" class="form-control" placeholder="Ex: 54996999999">
+                <span class="small">Insira apenas números</span>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="input-field col">
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" class="form-control" placeholder="Ex: 99700000">
+                <span class="small">Insira apenas números</span>
+            </div>
+            <div class="input-field col">
+                <label for="city">Cidade</label>
+                <input type="text" id="city" class="form-control" maxlength="50" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col">
+                <label for="neighborhood">Bairro</label>
+                <input type="text" id="neighborhood" class="form-control" maxlength="50" disabled>
+            </div>
+            <div class="input-field col">
+                <label for="address">Rua</label>
+                <input type="text" id="address" class="form-control" maxlength="50" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col">
+                <label for="complement">Complemento</label>
+                <input type="text" id="complement" class="form-control" maxlength="50">
+            </div>
+            <div class="input-field col">
+                <label for="number">Número</label>
+                <input type="number" id="number" class="form-control" maxlength="5">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col">
+                <label for="password">Senha</label>
+                <input type="password" id="password" class="form-control" maxlength="50">
+            </div>
+            <div class="input-field col">
+                <label for="confirmPassword">Confirmar senha</label>
+                <input type="password" id="confirmPassword" class="form-control" maxlength="50">
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center mt-4">
+            <button type="submit" class="btn btn-success">Enviar</button>
         </div>
     </form>
 </div>
 
+{% endblock %} 
 
-{% endblock %} {% block script %}
+{% block script %}
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 <script src="/js/register.js" charset="utf-8"></script>
-<script>
-    $(document).ready(function() {
-        M.updateTextFields();
-    });
-</script>
 {% endblock %}
