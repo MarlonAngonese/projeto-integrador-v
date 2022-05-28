@@ -15,6 +15,7 @@ const session = require('express-session');
 const uploader = require('../middleware/uploaderImg')
 const uploadGoogleDrive = require('../api/googledrive/auth')
 
+const cors = require('cors')
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3030;
 
@@ -157,7 +158,7 @@ app.delete('/category/:id', (req, res) => {
 });
 
 // POST PRODUCT
-app.post('/insertProducts', uploader.array('images'), async (req, res) => {
+app.post('/insertProducts', cors(), uploader.array('images'), async (req, res) => {
     try {
         if (!req.files) {
             throw "Você precisa fazer upload de um arquivo de imagem válido"
