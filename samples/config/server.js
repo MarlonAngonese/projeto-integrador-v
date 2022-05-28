@@ -119,7 +119,6 @@ app.post('/login', async (req, res) => {
     res.send("empty");  
   } else {
     req.session.client = resultado;
-    console.log(req.session.client);
     res.send(resultado);
   }
 }); 
@@ -200,7 +199,6 @@ app.get('/categories', (req, res) => {
 
 // POST PRODUCT
 app.post('/insertProducts', uploader.array('images'), async (req, res) => {
-
   try {
     if (!req.files) {
       throw "Você precisa fazer upload de um arquivo de imagem válido"
@@ -214,15 +212,13 @@ app.post('/insertProducts', uploader.array('images'), async (req, res) => {
     }
 
     req.body.url = result;
-    console.log(req.body);
 
     let product = new Products(req.body);
-    product.save((err, product) => {
-      console.info('deu certo');
-    })
-
-    res.redirect('/insertProducts');
-
+    product.save().then(() => {
+      res.send({'status': 200})
+    }).catch((err) => {
+      res.send({'status': 500})
+    });
   } catch (err) {
     res.send(err);
   }

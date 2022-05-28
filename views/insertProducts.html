@@ -14,8 +14,7 @@ Inserir Produtos
 
     <h2 class="display-6 text-center">INSERIR PRODUTOS</h2>
 
-    <form method="post" action="/insertProducts" enctype="multipart/form-data">
-
+    <form id="product-form" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Categoria</label>
             <select id="category" name="category" class="form-control">
@@ -47,8 +46,8 @@ Inserir Produtos
             <input id="images" class="form-control" type="file" name="images" multiple>
         </div>
 
-        <div class="">	
-            <button type="submit" class="btn btn-success">Enviar</button>
+        <div class="mb-3">	
+            <button type="button" id="send-button" class="btn btn-success">Enviar</button>
         </div>
     </form>
 </div>
