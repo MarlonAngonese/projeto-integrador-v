@@ -1,12 +1,10 @@
 {% extends '../layouts/base.html' %}
 
-{% block title %}
-    Tela de Login
-{% endblock %}
+{% block title %}<title>Recuperar Senha</title>{% endblock %}
 
 {% block styles %}<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">{% endblock %}
 
-    <!-- aqui é a criação do usuario e login-->
+    <!-- aqui é a recuperação de senha-->
 
 {% block content %}
 <div>
@@ -15,44 +13,29 @@
 			<div class="row justify-content-sm-center h-100">
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
 					<div class="text-center my-5">
-						
 					</div>
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
-							<h1 class="fs-4 card-title fw-bold mb-4">Faça login para continuar!</h1>
+							<h1 class="fs-4 card-title fw-bold mb-4">Esqueceu a senha?</h1>
 							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="email">E-Mail</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
 									<div class="invalid-feedback">
-										Email invalido!
+										Email Invalido!
 									</div>
-								</div>
-
-								<div class="mb-3">
-									<div class="mb-2 w-100">
-										<label class="text-muted" for="password">Senha</label>
-										<a href="recover.html" class="float-end">
-											Esqueceu a senha?
-										</a>
-									</div>
-									<input id="password" type="password" class="form-control" name="password" required>
-								    <div class="invalid-feedback">
-								    	Senha obrigatoria!
-							    	</div>
 								</div>
 
 								<div class="d-flex align-items-center">
-							
 									<button type="submit" class="btn btn-primary ms-auto">
-										Entrar
+										Enviar Link	
 									</button>
 								</div>
 							</form>
 						</div>
 						<div class="card-footer py-3 border-0">
 							<div class="text-center">
-								Não possui conta? <a href="register.html" class="text-dark">Criar Conta</a>
+								Lembrar minha senha? <a href="login.html" class="text-dark">Entrar</a>
 							</div>
 						</div>
 					</div>
@@ -64,3 +47,4 @@
 	<script src="js/login.js"></script>
 </div>
 {% endblock %}
+
