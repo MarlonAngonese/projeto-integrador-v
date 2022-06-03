@@ -92,6 +92,10 @@ router.get('/login', (req, res) => {
     res.render('clients/login.html');
 });
 
+router.get('/recover', (req, res) => {
+    res.render('clients/recover.html');
+});
+
 // router.get('/payment', (req, res) => {
 //     res.render('clients/payment.html');
 // });
