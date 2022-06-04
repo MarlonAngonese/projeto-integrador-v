@@ -13,6 +13,11 @@ const Categories = mongoose.model('categories', CategoriesSchema);
 const Products = mongoose.model('products', ProductsSchema);
 
 // ----ADMIN ROUTES
+
+router.get('/admin', (req, res) => {
+    res.render('test.html')
+});
+
 // GET CATEGORY
 router.get('/admin/categories/add', (req, res) => {
     Categories.find((err, obj) => {
