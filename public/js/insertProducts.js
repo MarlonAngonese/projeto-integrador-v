@@ -3,6 +3,7 @@ $(document).ready(function() {
     // Inserir produtos na lista
     $("#send-button").click(function() {
         var data = new FormData($('#product-form')[0]);
+        return console.log(data);
         $.ajax({
             url:'/insertProducts',
             type: 'POST',

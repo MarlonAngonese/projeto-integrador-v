@@ -81,16 +81,18 @@ const authChecker = (req, res, next) => {
 
 app.post('/login', async (req, res) => {
 
+    return console.log(req);
+
     resultado = await Clients.find({ //pesquisa em clientes os dados do formulario
         email: req.body.email,
         password: md5(req.body.password) //pesquisa senha criptografada
     }).limit(1).exec();
 
     if (resultado.length == 0) { //confere se encontrou pelo menos um usuario com os dados do login 
-        res.send("empty");
+        res.send({ 'status': 500 })
     } else {
         req.session.client = resultado;
-        res.send(resultado);
+        res.send({ 'status': 200, 'client': req.session.client })
     }
 });
 
