@@ -1,0 +1,38 @@
+******Lado do Ecomerce
+
+(CORRECT, GET)/home                                       (página inicial que será aberta no ecommerce)
+(CORRECT, GET, POST)/register                             (página onde um usuário novo se registra)
+(CORRECT, GET, POST)/login                                (página onde um usuário faz login)
+(PARTIAL)/category/:categoria                             (pesquisa por uma categoria específica e trás resultados)
+(PARTIAL)/search                                          (pesquisa por um produto especifico)
+(COMPLETE, GET)/product/:idProduto                        (apresenta os detalhes de um produto específico)
+(COMPLETE)/cart                                           (abre o carrinho com os produtos adicionados até o momento)
+(COMPLETE)/checkout                                       (página de checkout onde aparece o que foi selecionado para compra e opções de pagamento) 
+(COMPLETE)/confirmation                                   (confirmação do pedido, uma página estática)
+
+
+******Lado do Admin
+
+(NOT EXIST)/admin/login
+
+(PARTIAL)/admin/products/list                   
+(PARTIAL)/admin/products/add 
+(NOT EXIST)/admin/products/edit
+(PARTIAL)/admin/products/delete
+
+(PARTIAL)/admin/categories/list
+(PARTIAL)/admin/categories/add
+(NOT EXIST)/admin/categories/edit/:idCategoria
+(PARTIAL)/admin/categories/delete/:idCategoria
+
+(PARTIAL)/admin/contacts/list
+(PARTIAL)/admin/contacts/answer
+(PARTIAL)/admin/contacts/delete/:idContato
+
+(NOT EXIST)/admin/clients/list
+(NOT EXIST)/admin/clients/add
+(NOT EXIST)/admin/clients/edit
+(NOT EXIST)/admin/clients/delete
+
+(NOT EXIST)/admin/requests/list
+(NOT EXIST)/admin/requests/view

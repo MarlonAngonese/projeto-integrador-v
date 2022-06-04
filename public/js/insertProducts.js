@@ -3,6 +3,7 @@ $(document).ready(function() {
     // Inserir produtos na lista
     $("#send-button").click(function() {
         var data = new FormData($('#product-form')[0]);
+
         $.ajax({
             url:'/insertProducts',
             type: 'POST',
@@ -22,7 +23,7 @@ $(document).ready(function() {
                 return toastr["error"]("Produtos ", "Erro na inserção");
             },
             error: () => {
-                toastr["error"]("Produtos ", "Erro na inserção");
+                return toastr["error"]("Produtos ", "Erro na inserção");
             }
         })
     });
