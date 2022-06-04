@@ -18,7 +18,7 @@ $(document).ready(function() {
                 if (res.status == 200) {
                     toastr["success"]("Login ", "Bem vindo " + res.client[0].name);      
                     return setTimeout(() => {
-                        location.href = "/admin/insertProducts"
+                        location.href = "/cart"
                     }, 1500)
                 }
 
