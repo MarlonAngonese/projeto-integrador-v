@@ -80,9 +80,6 @@ const authChecker = (req, res, next) => {
 }
 
 app.post('/login', async (req, res) => {
-
-    return console.log(req);
-
     resultado = await Clients.find({ //pesquisa em clientes os dados do formulario
         email: req.body.email,
         password: md5(req.body.password) //pesquisa senha criptografada
@@ -96,8 +93,8 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// POST CLIENT
-app.post('/client', (req, res) => {
+// Register new Client
+app.post('/register', (req, res) => {
     var client = new Clients(req.body);
 
     if (client.password && client.password.length > 0) {

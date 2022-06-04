@@ -15,19 +15,19 @@ Checkout
         <div class="data-left">
             <div class="data-client">
                 <h5>Dados do cliente</h5>
-                <span>Nome: Renan</span>
-                <span>Sobrenome: Andreolla</span>
-                <span>CPF: 098789123-34</span>
-                <span>email: renanandreolla@teste.com</span>
+                <span>Nome:{{client.name}}</span>
+                <span>Sobrenome: {{client.lastname}}</span>
+                <span>CPF: {{client.cpf}}</span>
+                <span>email: {{client.email}}</span>
             </div>
       
             <div class="data-address">
               <h5>Endereço</h5>
-              <span>Cep: 99700-000</span>
-              <span>Rua: Rua Olavio Bilac</span>
-              <span>Bairro: Bairro Teste</span>
-              <span>Numero: Numero Teste</span>
-              <span>Complemento: Apto. 12</span>
+              <span>Cep: {{client.cep}}</span>
+              <span>Rua: {{client.street}}</span>
+              <span>Bairro: {{client.neighborhood}}</span>
+              <span>Numero: {{client.number}}</span>
+              <span>Complemento: {{client.complement}}</span>
             </div>
         </div>
 

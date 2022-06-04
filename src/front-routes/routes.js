@@ -60,7 +60,11 @@ router.get('/admin/search', (req, res) => {
 
 // DEFAULT ROUTES
 router.get('/', (req, res) => {
-    res.render('index.html');
+    res.redirect('/home');
+});
+
+router.get('/home', (req, res) => {
+    res.render('home.html');
 });
 
 router.get('/register', (req, res) => {
@@ -71,7 +75,7 @@ router.get('/contact', (req, res) => {
     res.render('clients/contact.html');
 });
 
-router.get('/answercontact', (req, res) => {
+router.get('/admin/contacts/answer', (req, res) => {
     res.render('clients/answercontact.html');
 });
 
@@ -83,17 +87,12 @@ router.get('/products', (req, res) => {
     res.render('products/list.products.html');
 });
 
-router.get('/product', (req, res) => {
-    res.render('products/view.product.html');
-});
-
 router.get('/cart', (req, res) => {
     res.render('clients/cart.html');
 });
 
 router.get('/checkout', (req, res) => {
-    console.log(req.session);
-    res.render('clients/checkout.html', { client: req.session.client });
+    res.render('clients/checkout.html', { client: req.session.client[0] });
 });
 
 router.get('/login', (req, res) => {

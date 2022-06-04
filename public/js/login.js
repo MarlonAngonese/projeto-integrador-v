@@ -1,20 +1,31 @@
 $(document).ready(function() {
 
-    // Inserir produtos na lista
+    // Conferir se o usuário tentou fazer login
     $("#button-login").click(function() {
-        var data = new FormData($('#login-form')[0]);
-        return console.log(data);
+        var data = {
+            email: $('#email').val(),
+            password: $('#password').val()
+        }
+
         $.ajax({
             url:'/login',
-            type: 'POST',
-            data: data,
+            type: 'post',
+            contentType: 'application/json',
+            processData: false,
+            cache: false,
+            data: JSON.stringify(data),
             success: function(res){
                 if (res.status == 200) {
-                    console.log(res);
+                    toastr["success"]("Login ", "Bem vindo " + res.client[0].name);      
+                    return setTimeout(() => {
+                        location.href = "/admin/insertProducts"
+                    }, 1500)
                 }
+
+                return toastr["error"]("Login ", "E-mail ou senha incorretos. Tente novamente!");
             },
             error: () => {
-                toastr["error"]("Login", "E-mail ou senha incorretos. Tente novamente!");
+                return toastr["error"]("Login ", "E-mail ou senha incorretos. Tente novamente!");
             }
         })
     })

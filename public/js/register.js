@@ -227,7 +227,7 @@ function send (event) {
         }
 
         // Front router to post new client on MongoDB
-        $.post('/client', data, function (res) {
+        $.post('/register', data, function (res) {
             if(res === 'ok') {
                 toastr["success"]("Cadastro realizado com sucesso!");
                 setTimeout(function(){
