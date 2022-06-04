@@ -3,23 +3,24 @@
 <link rel="stylesheet" href="/styles/base.css"> {% endblock %} {% block content %}
 
 <div class="container" style="margin-top: 2%">
-    <h1 class="display-6 text-center">Entre em contato</h1>
+    <h1 class="display-6 text-center">Responder contato</h1>
     <form onsubmit="sendContact(event)">
 
         <div class="mb-3">
-            <label for="email" class="form-label">Email </label>
-            <input type="email" class="form-control" id="email">
-
+            <label for="email" class="form-label">Email:</label>
         </div>
 
         <div class="mb-3">
-            <label for="subject" class="form-label">Assunto</label>
-            <input class="form-control" id="subject">
+            <label for="subject" class="form-label">Assunto:</label>
         </div>
 
         <div class="mb-3">
-            <label for="description" class="form-label">Descrição</label>
-            <textarea class="form-control" id="description" rows="6"></textarea>
+            <label for="request" class="form-label">Solicitação do cliente:</label>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Resposta:</label>
+            <textarea class="form-control" id="description" rows="5"></textarea>
         </div>
 
         <div class="mb-3">

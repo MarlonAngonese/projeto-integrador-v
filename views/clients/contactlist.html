@@ -1,0 +1,40 @@
+{% extends '../layouts/base.html' %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/styles/base.css"> {% block content %}
+
+<table class="table table-striped">
+    <div class="mt-5">
+        <h2 class="display-6 text-center">LISTA DE CONTATOS</h2>
+        <div id="list-products"></div>
+    </div>
+    <thead>
+        <tr>
+            <th scope="col">Email</th>
+            <th scope="col">Assunto</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in categories %}
+        <tr>
+            <td>teste@teste.com</td>
+            <td>problema no cartão</td>
+            <td>Não respondido </td>
+
+            <td><button type="button" class="btn btn-outline-danger btn-remove" id="{{ item._id }}">Excluir</button></td>
+            <td>
+                <a href="/answercontact">
+
+                    <button type="button" class="btn btn-outline-danger btn-request" id="{{ item._id }}">Responder</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %} {% block title %} Lista de contatos {% endblock %} {% block script %}
+<script src="/js/contactlist.js" charset="utf-8"></script>
+{% endblock %}

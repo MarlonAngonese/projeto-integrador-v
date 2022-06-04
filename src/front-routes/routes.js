@@ -71,6 +71,14 @@ router.get('/contact', (req, res) => {
     res.render('clients/contact.html');
 });
 
+router.get('/answercontact', (req, res) => {
+    res.render('clients/answercontact.html');
+});
+
+router.get('/contactlist', (req, res) => {
+    res.render('clients/contactlist.html');
+});
+
 router.get('/products', (req, res) => {
     res.render('products/list.products.html');
 });
