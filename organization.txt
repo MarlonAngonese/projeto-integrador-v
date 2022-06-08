@@ -9,6 +9,7 @@
 (COMPLETE)/cart                                           (abre o carrinho com os produtos adicionados até o momento)
 (COMPLETE)/checkout                                       (página de checkout onde aparece o que foi selecionado para compra e opções de pagamento) 
 (COMPLETE)/confirmation                                   (confirmação do pedido, uma página estática)
+(COMPLETE)/contact                                        (cria um feedback para entrar em contato sobre determinado assunto)
 
 
 ******Lado do Admin

@@ -1,40 +1,51 @@
 {% extends '../template.html' %}
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/styles/base.css"> {% block content %}
 
-<table class="table table-striped">
-    <div class="mt-5">
-        <h2 class="display-6 text-center">LISTA DE CONTATOS</h2>
-        <div id="list-products"></div>
-    </div>
-    <thead>
-        <tr>
-            <th scope="col">Email</th>
-            <th scope="col">Assunto</th>
-            <th scope="col">Status</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        {% for item in categories %}
-        <tr>
-            <td>teste@teste.com</td>
-            <td>problema no cartão</td>
-            <td>Não respondido </td>
-
-            <td><button type="button" class="btn btn-outline-danger btn-remove" id="{{ item._id }}">Excluir</button></td>
-            <td>
-                <a href="/answercontact">
-
-                    <button type="button" class="btn btn-outline-danger btn-request" id="{{ item._id }}">Responder</button>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block content %}
+<div class="w-75 mx-auto">
+    <table class="table table-striped">
+        <div class="mt-5">
+            <h2 class="display-6 mt-4 mb-4">LISTA DE CONTATOS</h2>
+            <div id="list-products"></div>
+        </div>
+        <thead class="thead-dark">
+            <tr class="row">
+                <th scope="col" class="col-3">Email</th>
+                <th scope="col" class="col-3">Assunto</th>
+                <th scope="col" class="col-3">Status</th>
+                <th scope="col" class="col-3">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                <tr class="row align-middle">
+                    <td class="col-3 align-middle text-truncate">{{ contact.email }}</td>
+                    <td class="col-3 align-middle text-truncate">{{ contact.subject }}</td>
+                    <td class="col-3 align-middle text-truncate">
+                        {% if contact.status == true %}
+                            Respondido
+                        {% else %}
+                            Não Respondido
+                        {% endif %}
+                    </td>
+                    <td class="col-3 align-middle text-truncate">
+                        <a href="/admin/contacts/answer" class="btn btn-warning">Responder</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr class="row align-middle">
+                    <td class="col-12 align-middle d-flex justify-content-center">Não há registros</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
-{% endblock %} {% block title %} Lista de contatos {% endblock %} {% block script %}
+{% endblock %}
+
+{% block title %}
+Lista de contatos
+{% endblock %}
+
+{% block script %}
 <script src="/js/contactlist.js" charset="utf-8"></script>
 {% endblock %}

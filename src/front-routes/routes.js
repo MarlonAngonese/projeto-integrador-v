@@ -38,8 +38,10 @@ router.get('/admin/contacts/answer', (req, res) => {
     res.render('admin/contacts/answer.contact.html');
 });
 
-router.get('/admin/contacts/list', (req, res) => {
-    res.render('admin/contacts/list.contacts.html');
+router.get('/admin/contacts/list', async(req, res) => {
+    let all_contacts = await Contacts.find()
+
+    res.render('admin/contacts/list.contacts.html', {'contacts': all_contacts});
 });
 
 // router.get('/admin/c/:slug', (req, res) => {
