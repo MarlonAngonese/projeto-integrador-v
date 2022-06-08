@@ -36,7 +36,7 @@ function sendContact(event) {
             },4500);
             $('form').trigger('reset');
         } else {
-            toastr["error"](res.message);
+            toastr["error"]('Ops, ocorreu um erro ao enviar, por favor, tente mais tarde.');
         }
     })
     

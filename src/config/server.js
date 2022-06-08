@@ -121,6 +121,7 @@ app.post('/contact', (req, res) => {
         var email = req.body.email;
         var subject = req.body.subject;
         var description = req.body.description;
+        req.body.status = false;
 
         if (email && subject && description) {
             var contact = new Contacts(req.body);
