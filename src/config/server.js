@@ -138,7 +138,7 @@ app.post('/contact', (req, res) => {
 });
 
 // POST CATEGORY
-app.post('/categories', (req, res) => {
+app.post('/admin/categories/add', (req, res) => {
     var categories = new Categories(req.body);
     categories.save((err, categories) => {
         console.info('Categoria ' + categories.name + ' salva');
@@ -147,8 +147,7 @@ app.post('/categories', (req, res) => {
 });
 
 // DELETE CATEORY
-app.delete('/category/:id', (req, res) => {
-    console.log('to aq na categoria delete')
+app.delete('/admin/category/delete/:id', (req, res) => {
     Categories.findOneAndRemove({ _id: req.params.id }, (err, obj) => {
         if (err) {
             res.send('error');
@@ -180,12 +179,43 @@ app.post('/insertProducts', cors(), uploader.array('images'), async (req, res) =
             res.send({ 'status': 500 })
         });
     } catch (err) {
-        res.send(err);
+        res.send({ 'status': 500 })
     }
 });
 
+// UPDATE PRODUCT
+app.post('/admin/products/update/:id', uploader.array('images'), async (req, res) => {
+    let product = await Products.findOne({_id: req.params.id});
+
+    try {
+        if (req.files.length > 0) {
+            //Send image to google drive
+            let result = await uploadGoogleDrive(req.files);
+
+            if (!result) {
+                throw "Não foi possível fazer o upload da imagem no Google Drive"
+            }
+
+            product.url = result;
+        }
+
+        product.name = (req.body.name != product.name) ? req.body.name : product.name
+        product.category = (req.body.category != product.category) ? req.body.category : product.category
+        product.price = (req.body.price != product.price) ? req.body.price : product.price
+        product.description = (req.body.description != product.description) ? req.body.description : product.description
+
+        product.save().then(() => {
+            res.send({ 'status': 200 })
+        }).catch((err) => {
+            res.send({ 'status': 500 })
+        });
+    } catch (err) {
+        res.send({ 'status': 500 })
+    }
+})
+
 // DELETE PRODUCT
-app.delete('/product/:id', (req, res) => {
+app.delete('/admin/products/delete/:id', (req, res) => {
     Products.findOneAndRemove({ _id: req.params.id }, (err, obj) => {
         if (err) {
             res.send('error');
