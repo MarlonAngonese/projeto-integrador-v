@@ -19,19 +19,57 @@ router.get('/admin', (req, res) => {
 });
 
 // GET CATEGORY
-router.get('/admin/categories/add', (req, res) => {
-    Categories.find((err, obj) => {
-        res.render('admin/categories/add.category.html', { categories: obj });
-    });
+router.get('/admin/categories/list', async (req, res) => {
+    let all_categories = await Categories.find();
+
+    return res.render('admin/categories/list.categories.html', { categories: all_categories });
 });
 
-// GET PRODUCTS
+// GET CATEGORY ADD
+router.get('/admin/categories/add', (req, res) => {
+    res.render('admin/categories/add.category.html');
+});
+
+// GET PRODUCT LIST
+router.get('/admin/products/list', async (req, res) => {
+    let all_products = await Products.aggregate([{
+        $lookup: {
+            from: "categories", // collection name in db
+            localField: "category",
+            foreignField: "_id",
+            as: "categories"
+        }
+    }]);
+
+    res.render('admin/products/list.products.html', { products: all_products });
+});
+
+// GET PRODUCT ADD
 router.get('/admin/products/add', (req, res) => {
     Products.find((err, products) => {
         Categories.find().sort('name').exec((err, categories) => {
-            res.render('admin/products/add.products.html', { products: products, categories: categories });
+            res.render('admin/products/add.product.html', { products: products, categories: categories });
         });
     });
+});
+
+// GET PRODUCT EDIT
+router.get('/admin/products/edit/:id', async (req, res) => {
+    let product = await Products.aggregate([
+        {
+            $lookup: {
+                from: "categories",
+                localField: "category",
+                foreignField: "_id",
+                as: "categories"
+            },
+        },
+        { $match: { "_id": mongoose.Types.ObjectId(req.params.id) } }
+    ]);
+
+    let all_categories = await Categories.find();
+
+    res.render('admin/products/edit.product.html', {product: product[0], categories: all_categories});
 });
 
 router.get('/admin/contacts/answer', (req, res) => {

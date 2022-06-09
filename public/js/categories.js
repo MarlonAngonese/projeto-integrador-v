@@ -1,12 +1,12 @@
 function insertCategories (event) {
 
-  event.preventDefault();
+	event.preventDefault();
 
 	var name = $("#name").val();
 	var category = $("#category").val();
 
 	if (name == "") {
-		toastr["error"]("Campo nome obrigatório");
+		toastr["error"]("Campo categoria obrigatório");
 		return
 	}
 
@@ -19,12 +19,12 @@ function insertCategories (event) {
 			slug: category
 		}
 
-		$.post('/categories', data, function (res) {
+		$.post('/admin/categories/add', data, function (res) {
 			if(res === 'ok') {
 				toastr["success"]("Categoria cadastrada com sucesso!");
-			setTimeout(function(){
-				location.reload();
-			},1500);
+				setTimeout(function(){
+					location.href = '/admin/categories/list'
+				},1500);
 			} else {
 				toastr["error"]("Erro: " + res);
 			}
@@ -35,11 +35,11 @@ function insertCategories (event) {
 // EXCLUIR ITENS DA TABELA
 $('.btn-remove').click(function () {
 	$.ajax({
-		url: '/category/' + $(this).attr('id'),
+		url: '/admin/category/delete/' + $(this).attr('id'),
 		type: 'delete',
 		success: function (r) {
 			if (r == 'ok') {
-				toastr["error"]("Categoria excluida!");
+				toastr["success"]("Categoria excluida!");
 			setTimeout(function(){
 				location.reload();
 			},1500);

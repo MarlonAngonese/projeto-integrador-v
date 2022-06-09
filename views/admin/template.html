@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swp" rel="stylesheet">
+
+    {% block styles %}
+    {% endblock %}
+
     <title>
         {% block title %}
         {% endblock %}
@@ -24,10 +28,10 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
                     class="fas fa-laptop me-2"></i>Malotech</div>
             <div class="list-group list-group-flush my-3">
-                <a href="/admin/categories/add" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <a href="/admin/categories/list" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                     <i class="fas fa-list-ul me-2"></i>Categorias
                 </a>
-                <a href="/admin/products/add" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <a href="/admin/products/list" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                     <i class="fas fa-shopping-basket me-2"></i>Produtos
                 </a>
                 <a href="/admin/contacts/list" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">

@@ -5,7 +5,7 @@ Inserir Produtos
 {% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="/styles/insertProducts.css">
+    <link rel="stylesheet" href="/styles/insertProducts.css">
 {% endblock %}
 
 {% block content %}
@@ -34,7 +34,6 @@ Inserir Produtos
             <label>Preço</label>
             <input type="number" name="price" id="price" class="form-control">
         </div>
-        <br>
 
         <div class="mb-3">
             <label for="">Descrição</label>
@@ -47,48 +46,10 @@ Inserir Produtos
         </div>
 
         <div class="mb-3">	
-            <button type="button" id="send-button" class="btn btn-success">Enviar</button>
+            <button type="button" id="send-button" class="btn btn-success">Salvar</button>
         </div>
     </form>
 </div>
-
-    {% if products | length > 0 %}
-    <table class="table table-striped">
-        <div class="mt-5">
-            <h2 class="display-6 text-center">LISTA DE PRODUTOS</h2>
-            <div id="list-products"></div>
-    </div>
-
-        <thead>
-            <tr>
-            <th class="thcategoryId" scope="col">ID</th>
-            <th class="thname" scope="col">Nome</th>
-            <th class="thprice" scope="col">Preço</th>
-            <th class="thdescription" scope="col">Descrição</th>
-            <th class="thurl" scope="col">URL</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in products %}
-            <tr>
-                <td class="categoryId">{{ item.category }}</td>
-                <td class="nameitem">{{ item.name }}</td>
-                <td class="priceitem">{{ item.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) }}</td>
-                <td class="descriptionitem">{{ item.description }}</td>
-                <td class="urlitem">{{ item.url }}</td>
-                <td><button type="button" class="btn btn-outline-danger btn-remove" id="{{ item._id }}">Excluir</button></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <div class="">
-          <h5 class="">Sem produtos </h5>
-    </div>
-    </div>
-
-{% endif %}
-
 {% endblock %}
 
 {% block script %}

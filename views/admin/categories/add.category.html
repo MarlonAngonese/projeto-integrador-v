@@ -6,51 +6,22 @@
 <div class="w-75 mx-auto">
 
 <h2 class="display-6 mt-4 mb-4">INSERIR CATEGORIAS</h2>
-<form onsubmit="insertCategories(event)">
+	<form onsubmit="insertCategories(event)">
+		<div class="mb-3">
+			<label class="form-label">Categoria</label>
+			<input type="text" name="" value="" id="name" class="form-control">
+		</div>
 
-	<div class="mb-3">
-		<label for="exampleFormControlInput1" class="form-label">Categoria</label>
-		<input type="text" name="" value="" id="name" class="form-control">
-	</div>
+		<div class="mb-3">
+			<label class="form-label">Slug</label>
+			<input type="text" name="" value="" id="category" class="form-control">
+		</div>
 
-	<div class="">
-		<label for="exampleFormControlTextarea1" class="form-label">Slug</label>
-		<input type="text" name="" value="" id="category" class="form-control">
-	</div>
-
-	<br>
-	<div class="">
-		<button type="submit" class="btn btn-success">Enviar</button>
-	</div>
-
-</form>
-<br>
-
-<table class="table table-striped">
-	<div class="mt-5">
-		<h2 class="display-6 text-center">LISTA DE CATEGORIAS</h2>
-		<div id="list-products"></div>
-	</div>
-	<thead>
-		<tr>
-			<th scope="col">Categoria</th>
-			<th scope="col">Slug</th>
-			<th scope="col">Actions</th>
-		</tr>
-  	</thead>
-	
-	  <tbody>
-		  {% for item in categories %}
-		  <tr>
-			<td>{{ item.name }}</td>
-			<td>{{ item.slug }}</td>
-
-			
-			<td><button type="button" class="btn btn-outline-danger btn-remove" id="{{ item._id }}">Excluir</button></td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
+		<br>
+		<div class="mb-3">
+			<button type="submit" class="btn btn-success">Salvar</button>
+		</div>
+	</form>
 </div>
 
 {% endblock %}
@@ -59,5 +30,5 @@
 {% endblock %}
 
 {% block script %}
-	<script src="/js/insertCategories.js" charset="utf-8"></script>
+	<script src="/js/categories.js" charset="utf-8"></script>
 {% endblock %}

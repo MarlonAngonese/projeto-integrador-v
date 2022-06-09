@@ -1,0 +1,47 @@
+{% extends '../template.html' %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/styles/base.css">
+{% block content %}
+
+<div class="w-75 mx-auto">
+    <table class="table table-striped">
+        <div class="mt-5 row">
+            <h2 class="display-6 mt-4 mb-4 col-8">LISTA DE CATEGORIAS</h2>
+            <div class="col-4">
+                <a class="btn btn-success float-right w-75" style="margin-top: 12%;" href="/admin/categories/add">Adicionar Categoria</a>
+            </div>
+        </div>
+        <thead class="thead-dark">
+            <tr class="row">
+                <th scope="col" class="col-4">Nome</th>
+                <th scope="col" class="col-4">Slug</th>
+                <th scope="col" class="col-4 d-flex justify-content-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+                <tr class="row align-middle" style="line-height: 30px;">
+                    <td class="col-4 align-middle text-truncate">{{ category.name }}</td>
+                    <td class="col-4 align-middle text-truncate">{{ category.slug }}</td>
+                    <td class="col-4 align-middle text-truncate d-flex justify-content-center">
+                        <a href="/admin/categories/edit/{{ category.id }}" class="btn btn-warning mr-2" style="width: 30%;">Editar</a>
+                        <button type="button" class="btn btn-danger btn-remove" style="width: 30%;" id="{{ category.id }}">Excluir</button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr class="row align-middle">
+                    <td class="col-12 align-middle d-flex justify-content-center">Não há registros</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+{% block title %}
+	Lista de Categorias
+{% endblock %}
+
+{% block script %}
+	<script src="/js/categories.js" charset="utf-8"></script>
+{% endblock %}

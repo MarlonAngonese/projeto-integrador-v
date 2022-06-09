@@ -1,0 +1,69 @@
+{% extends '../template.html' %}
+
+{% block title %}
+Inserir Produtos
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/insertProducts.css">
+{% endblock %}
+
+{% block content %}
+
+<i style="display: none;" id="p-id">{{ product._id }}</i>
+
+<div class="w-75 mx-auto">
+
+    <h2 class="display-6 mt-4 mb-4">EDITAR PRODUTO: {{ product.name }}</h2>
+
+    <form id="product-form" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">Categoria</label>
+            <select id="category" name="category" class="form-control">
+                <option value="">Selecione uma categoria</option>
+                {% for category in categories %}
+                    {% if (category.slug == product.categories[0].slug) %}
+                        <option selected value="{{ category._id }}">{{ category.name }}</option>
+                    {% else %}
+                        <option value="{{ category._id }}">{{ category.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Nome</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ product.name }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Preço</label>
+            <input type="number" name="price" id="price" class="form-control" value="{{ product.price }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="">Descrição</label>
+            <textarea class="form-control" name="description" id="description" rows="3">{{ product.description }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="images" class="form-label">Imagens</label>
+            <input id="images" class="form-control" type="file" name="images" multiple>
+        </div>
+
+        <div class="mb-5">
+            {% for image in product.url %}
+                <img src="{{image}}" alt="Image" width="100px">
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">	
+            <button type="button" id="update-button" class="btn btn-success">Salvar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+  	<script src="/js/insertProducts.js" charset="utf-8"></script>
+{% endblock %}
