@@ -3,18 +3,20 @@
 <link rel="stylesheet" href="/styles/base.css">
 {% block content %}
 
+<i style="display: none;" id="p-id">{{ category._id }}</i>
+
 <div class="w-75 mx-auto">
 
-<h2 class="display-6 mt-4 mb-4">INSERIR CATEGORIAS</h2>
-	<form onsubmit="insertCategories(event)">
+    <h2 class="display-6 mt-4 mb-4">EDITAR CATEGORIA: {{ category.name }}</h2>
+	<form onsubmit="updateCategories(event)">
 		<div class="mb-3">
 			<label class="form-label">Categoria</label>
-			<input type="text" value="" id="name" class="form-control">
+			<input type="text" value="{{ category.name }}" id="name" class="form-control">
 		</div>
 
 		<div class="mb-3">
 			<label class="form-label">Slug</label>
-			<input type="text" value="" id="slug" class="form-control">
+			<input type="text" value="{{ category.slug }}" id="slug" class="form-control">
 		</div>
 
 		<br>

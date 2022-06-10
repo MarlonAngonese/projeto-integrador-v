@@ -3,20 +3,20 @@ function insertCategories (event) {
 	event.preventDefault();
 
 	var name = $("#name").val();
-	var category = $("#category").val();
+	var slug = $("#slug").val();
 
 	if (name == "") {
 		toastr["error"]("Campo categoria obrigatório");
 		return
 	}
 
-	if (category == "") {
+	if (slug == "") {
 		toastr["error"]("Campo categoria obrigatório");
 		return
 	} else {
 		var data = {
 			name: name,
-			slug: category
+			slug: slug
 		}
 
 		$.post('/admin/categories/add', data, function (res) {
@@ -30,6 +30,40 @@ function insertCategories (event) {
 			}
 		});
   	}
+}
+
+// Atualizar categoria da tabela
+const updateCategories = (event) => {
+	event.preventDefault();
+
+	var name = $("#name").val();
+	var slug = $("#slug").val();
+	
+	if (name == "") {
+		toastr["error"]("Campo categoria obrigatório");
+		return
+	}
+	
+	if (slug == "") {
+		toastr["error"]("Campo categoria obrigatório");
+		return
+	}
+	
+	var data = {
+		name: name,
+		slug: slug
+	}
+	
+	$.post('/admin/categories/update/' +  $('#p-id').html(), data, function (res) {
+		if(res.status == 200) {
+			toastr["success"]("Categoria atualizada com sucesso!");
+			setTimeout(function(){
+				location.href = '/admin/categories/list'
+			},1500);
+		} else {
+			toastr["error"]("Erro: " + res);
+		}
+	});
 }
 
 // EXCLUIR ITENS DA TABELA
