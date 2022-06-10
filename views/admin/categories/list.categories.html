@@ -24,8 +24,8 @@
                     <td class="col-4 align-middle text-truncate">{{ category.name }}</td>
                     <td class="col-4 align-middle text-truncate">{{ category.slug }}</td>
                     <td class="col-4 align-middle text-truncate d-flex justify-content-center">
-                        <a href="/admin/categories/edit/{{ category.id }}" class="btn btn-warning mr-2" style="width: 30%;">Editar</a>
-                        <button type="button" class="btn btn-danger btn-remove" style="width: 30%;" id="{{ category.id }}">Excluir</button>
+                        <a href="/admin/categories/edit/{{ category._id }}" class="btn btn-warning mr-2" style="width: 30%;">Editar</a>
+                        <button type="button" class="btn btn-danger btn-remove" style="width: 30%;" id="{{ category._id }}">Excluir</button>
                     </td>
                 </tr>
             {% else %}
