@@ -146,6 +146,20 @@ app.post('/admin/categories/add', (req, res) => {
     })
 });
 
+// UPDATE CATEGORY
+app.post('/admin/categories/update/:id', async (req, res) => {
+    let category = await Categories.findOne({ _id: req.params.id });
+
+    category.name = (req.body.name != category.name) ? req.body.name : category.name
+    category.slug = (req.body.slug != category.slug) ? req.body.slug : category.slug
+
+    category.save().then(() => {
+        res.send({ 'status': 200 })
+    }).catch((err) => {
+        res.send({ 'status': 500 })
+    });
+});
+
 // DELETE CATEORY
 app.delete('/admin/category/delete/:id', (req, res) => {
     Categories.findOneAndRemove({ _id: req.params.id }, (err, obj) => {

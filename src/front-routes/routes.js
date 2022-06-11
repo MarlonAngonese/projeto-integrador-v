@@ -30,6 +30,15 @@ router.get('/admin/categories/add', (req, res) => {
     res.render('admin/categories/add.category.html');
 });
 
+// GET CATEGORY EDIT
+router.get('/admin/categories/edit/:id', async (req, res) => {
+    let category = await Categories.findOne({_id: req.params.id});
+
+    console.log(category)
+
+    res.render('admin/categories/edit.category.html', {category: category})
+})
+
 // GET PRODUCT LIST
 router.get('/admin/products/list', async (req, res) => {
     let all_products = await Products.aggregate([{

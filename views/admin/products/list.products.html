@@ -32,7 +32,7 @@ Inserir Produtos
                 <td class="col-3 align-middle text-truncate">
                     {{ product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) }}
                 </td>
-                <td class="col-3 align-middle text-truncate">
+                <td class="col-3 align-middle text-truncate d-flex justify-content-center">
                     <a href="/admin/products/edit/{{ product._id }}" class="btn btn-warning mr-2" style="width: 40%;">Editar</a>
                     <button type="button" class="btn btn-danger btn-remove" style="width: 40%;" id="{{ product._id }}">Excluir</button>
                 </td>
