@@ -23,7 +23,7 @@ Checkout
       
             <div class="data-address">
               <h5>Endereço</h5>
-              <span>Cep: {{client.cep}}</span>
+              <span>CEP: {{client.cep}}</span>
               <span>Rua: {{client.street}}</span>
               <span>Bairro: {{client.neighborhood}}</span>
               <span>Numero: {{client.number}}</span>
@@ -67,9 +67,9 @@ Checkout
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body1">
                     <span>Clique no botão abaixo para gerar seu boleto:</span>
-                    <a href="/confirmation">
-                        <button type="submit" class="btn btn-success">Finalizar com Boleto</button>
-                    </a>
+                    
+                        <button type="submit" class="btn btn-success" onclick="goToconfirmation('ticket')">Finalizar com Boleto</button>
+                    
                 </div>
                 </div>
             </div>
@@ -86,9 +86,9 @@ Checkout
                     <span>Realize seu pagamento escaneando o QR Code ou copie o código PIX:</span>
                     <img height="150" width="150" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Link_pra_pagina_principal_da_Wikipedia-PT_em_codigo_QR_b.svg/1200px-Link_pra_pagina_principal_da_Wikipedia-PT_em_codigo_QR_b.svg.png" alt="">
                     <span>Ou copie o código Pix para pagar em seu app bancário: 234g2u3gd23dhb2j3273djk2</span>
-                    <a href="/confirmation">
-                        <button type="submit" class="btn btn-success">Finalizar com Pix</button>
-                    </a>
+                    
+                        <button type="submit" class="btn btn-success" onclick="goToconfirmation('pix')">Finalizar com Pix</button>
+                    
                 </div>
                 </div>
             </div>
@@ -163,7 +163,7 @@ Checkout
             
                     <div class="mb-3">
                       
-                            <button onclick="goToconfirmation()" type="submit" class="btn btn-success">Finalizar com Cartão</button>
+                            <button onclick="goToconfirmation('card')" type="submit" class="btn btn-success">Finalizar com Cartão</button>
                        
                     </div>
                 </div>

@@ -17,6 +17,7 @@ toastr.options = {
 };
 
 var cart = sessionStorage.getItem("cart");
+var total = 0;
 cart = JSON.parse(cart);
 console.log(cart);
 
@@ -27,7 +28,6 @@ function toBrDigits (number) {
 function showItemsCheckout () {
   if (cart !== null) {
     var listCart = $('<ul class="list-unstyled"></ul>');
-    var total = 0;
 
     for(var i in cart) {
       var li = $('<li class="list-prd"></li>');
@@ -73,83 +73,141 @@ function id( el ){
   return document.getElementById( el );
 }
 
-function goToconfirmation() {
-  var cardNumber = $("#cc").val();
-  var nameCard = $("#nameCard").val();
-  var monthValidate = $("#monthValidate").val();
-  var yearValidate = $("#yearValidate").val();
-  var securityCode = $("#securityCode").val();
-  var instalments = $("#instalments").val();
-  var approveOrder = false;
+function createOrder(data) {
+  $.ajax({
+    url:'/insertOrders',
+    type: 'POST',
+    data: data,
+    success: function(res){
+        if (res.success) {
+            toastr["success"]("Pedido enviado com sucesso!");
 
-  if (!cardNumber || cardNumber == "") {
-    $("#cc").addClass("invalid");
-    toastr["error"]("Número do cartão obrigatório");
-    approveOrder = false;
-    return;
-  } else {
-    approveOrder = true;
-    $("#cc").removeClass("invalid");
+            return setTimeout(() => {
+              window.location.href = "/";
+            }, 1500)
+        }
+
+        return toastr["error"]("Pedidos ", "Erro na inserção");
+    },
+    error: () => {
+        return toastr["error"]("Pedidos ", "Erro na inserção");
+    }
+  });
+}
+
+function getOrderInfos(payment) {
+  $.ajax({
+    url:'/admin/session/client',
+    type: 'GET',
+    success: function(res){
+        if (res.client) {
+          var client =  res.client;
+
+          var data = {
+            payment: payment,
+            products: cart,
+            client: client._id
+          }
+
+          createOrder(data);  
+          console.log(data);
+        } else {
+          return toastr["error"]("Pedido", "Ocorreu um erro ao realizar seu pedido, tente novamente mais tarde");
+        }
+
+    },
+    error: () => {
+      return toastr["error"]("Pedido", "Ocorreu um erro ao realizar seu pedido, tente novamente mais tarde");
+    }
+})
+}
+
+function goToconfirmation(paymentType) {
+  console.log(paymentType);
+  
+  if (paymentType == "ticket") {
+    getOrderInfos(paymentType);
   }
 
-  if (!nameCard || nameCard == "") {
-    $("#nameCard").addClass("invalid");
-    toastr["error"]("Nome no cartão obrigatório");
-    approveOrder = false;
-    return;
-  } else {
-    approveOrder = true;
-    $("#nameCard").removeClass("invalid");
+  if (paymentType == "pix") {
+    getOrderInfos(paymentType);
   }
 
-  if (!monthValidate || monthValidate == "") {
-    $("#monthValidate").addClass("invalid");
-    toastr["error"]("Mês de validade obrigatório");
-    approveOrder = false;
-    return;
-  } else {
-    approveOrder = true;
-    $("#monthValidate").removeClass("invalid");
-  }
-
-  if (!yearValidate || yearValidate == "") {
-    $("#yearValidate").addClass("invalid");
-    toastr["error"]("Ano de validade obrigatório");
-    approveOrder = false;
-    return;
-  } else {
-    approveOrder = true;
-    $("#yearValidate").removeClass("invalid");
-  }
-
-  if (!securityCode || securityCode == "" || securityCode.length != 3) {
-    $("#securityCode").addClass("invalid");
-    toastr["error"]("Código de segurança obrigatório");
-    approveOrder = false;
-    return;
-  } else {
-    approveOrder = true;
-    $("#securityCode").removeClass("invalid");
-  }
-
-  if (!instalments || instalments == "") {
-    $("#instalments").addClass("invalid");
-    toastr["error"]("Parcela obrigatório");
-    approveOrder = false;
-    return;
-  } else {
-    approveOrder = true;
-    $("#instalments").removeClass("invalid");
-  }
-
-  if (!approveOrder) {
-    toastr["error"]("Revise seu pedido, consulte entradas inválidas");
-  } else {
-    toastr["success"]("Compra realizada");
-    setTimeout(function(params) {
-      window.location.href = "/confirmation";
-    }, 2000);
+  if (paymentType == "card") {
     
+    var cardNumber = $("#cc").val();
+    var nameCard = $("#nameCard").val();
+    var monthValidate = $("#monthValidate").val();
+    var yearValidate = $("#yearValidate").val();
+    var securityCode = $("#securityCode").val();
+    var instalments = $("#instalments").val();
+    var approveOrder = false;
+  
+    if (!cardNumber || cardNumber == "") {
+      $("#cc").addClass("invalid");
+      toastr["error"]("Número do cartão obrigatório");
+      approveOrder = false;
+      return;
+    } else {
+      approveOrder = true;
+      $("#cc").removeClass("invalid");
+    }
+  
+    if (!nameCard || nameCard == "") {
+      $("#nameCard").addClass("invalid");
+      toastr["error"]("Nome no cartão obrigatório");
+      approveOrder = false;
+      return;
+    } else {
+      approveOrder = true;
+      $("#nameCard").removeClass("invalid");
+    }
+  
+    if (!monthValidate || monthValidate == "") {
+      $("#monthValidate").addClass("invalid");
+      toastr["error"]("Mês de validade obrigatório");
+      approveOrder = false;
+      return;
+    } else {
+      approveOrder = true;
+      $("#monthValidate").removeClass("invalid");
+    }
+  
+    if (!yearValidate || yearValidate == "") {
+      $("#yearValidate").addClass("invalid");
+      toastr["error"]("Ano de validade obrigatório");
+      approveOrder = false;
+      return;
+    } else {
+      approveOrder = true;
+      $("#yearValidate").removeClass("invalid");
+    }
+  
+    if (!securityCode || securityCode == "" || securityCode.length != 3) {
+      $("#securityCode").addClass("invalid");
+      toastr["error"]("Código de segurança obrigatório");
+      approveOrder = false;
+      return;
+    } else {
+      approveOrder = true;
+      $("#securityCode").removeClass("invalid");
+    }
+  
+    if (!instalments || instalments == "") {
+      $("#instalments").addClass("invalid");
+      toastr["error"]("Parcela obrigatório");
+      approveOrder = false;
+      return;
+    } else {
+      approveOrder = true;
+      $("#instalments").removeClass("invalid");
+    }
+  
+    if (!approveOrder) {
+      toastr["error"]("Revise seu pedido, consulte entradas inválidas");
+    } else {
+      getOrderInfos(paymentType);
+    }
   }
 }
 
