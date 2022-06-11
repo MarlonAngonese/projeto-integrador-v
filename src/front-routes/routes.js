@@ -14,12 +14,16 @@ const Products = mongoose.model('products', ProductsSchema);
 
 // ----ADMIN ROUTES
 
+router.get('/admin/login', (req, res) => {
+    res.render('admin/template-login.html')
+})
+
 router.get('/admin', (req, res) => {
     res.render('test.html')
 });
 
 // GET CATEGORY
-router.get('/admin/categories/list', async (req, res) => {
+router.get('/admin/categories/list', async(req, res) => {
     let all_categories = await Categories.find();
 
     return res.render('admin/categories/list.categories.html', { categories: all_categories });
@@ -31,16 +35,16 @@ router.get('/admin/categories/add', (req, res) => {
 });
 
 // GET CATEGORY EDIT
-router.get('/admin/categories/edit/:id', async (req, res) => {
-    let category = await Categories.findOne({_id: req.params.id});
+router.get('/admin/categories/edit/:id', async(req, res) => {
+    let category = await Categories.findOne({ _id: req.params.id });
 
     console.log(category)
 
-    res.render('admin/categories/edit.category.html', {category: category})
+    res.render('admin/categories/edit.category.html', { category: category })
 })
 
 // GET PRODUCT LIST
-router.get('/admin/products/list', async (req, res) => {
+router.get('/admin/products/list', async(req, res) => {
     let all_products = await Products.aggregate([{
         $lookup: {
             from: "categories", // collection name in db
@@ -63,9 +67,8 @@ router.get('/admin/products/add', (req, res) => {
 });
 
 // GET PRODUCT EDIT
-router.get('/admin/products/edit/:id', async (req, res) => {
-    let product = await Products.aggregate([
-        {
+router.get('/admin/products/edit/:id', async(req, res) => {
+    let product = await Products.aggregate([{
             $lookup: {
                 from: "categories",
                 localField: "category",
@@ -78,7 +81,7 @@ router.get('/admin/products/edit/:id', async (req, res) => {
 
     let all_categories = await Categories.find();
 
-    res.render('admin/products/edit.product.html', {product: product[0], categories: all_categories});
+    res.render('admin/products/edit.product.html', { product: product[0], categories: all_categories });
 });
 
 router.get('/admin/contacts/answer', (req, res) => {
@@ -88,7 +91,7 @@ router.get('/admin/contacts/answer', (req, res) => {
 router.get('/admin/contacts/list', async(req, res) => {
     let all_contacts = await Contacts.find()
 
-    res.render('admin/contacts/list.contacts.html', {'contacts': all_contacts});
+    res.render('admin/contacts/list.contacts.html', { 'contacts': all_contacts });
 });
 
 // router.get('/admin/c/:slug', (req, res) => {
