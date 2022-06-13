@@ -8,6 +8,7 @@ const ClientsSchema = require('../schemas/clients');
 const ContactsSchema = require('../schemas/contact');
 const CategoriesSchema = require('../schemas/categories');
 const ProductsSchema = require('../schemas/products');
+const OrdersSchema = require('../schemas/orders');
 const routes = require('../front-routes/routes');
 const md5 = require('md5');
 const session = require('express-session');
@@ -53,6 +54,7 @@ const Clients = mongoose.model('clients', ClientsSchema);
 const Contacts = mongoose.model('contact', ContactsSchema);
 const Categories = mongoose.model('categories', CategoriesSchema);
 const Products = mongoose.model('products', ProductsSchema);
+const Orders = mongoose.model('orders', OrdersSchema);
 
 // CONFIG CATEGORIES
 app.use((req, res, next) => {
@@ -108,6 +110,20 @@ app.post('/register', (req, res) => {
     client.save((err, client) => {
         console.info(client.name + ' salvo');
         res.send('ok');
+
+        if (err) {
+            console.error(err)
+        }
+    })
+});
+
+// SEND ORDER
+app.post('/insertOrders', (req, res) => {
+    var order = new Orders(req.body);
+        console.log(req.body);
+    order.save((err, order) => {
+        console.info(order + ' salvo');
+        res.send({success: true});
 
         if (err) {
             console.error(err)

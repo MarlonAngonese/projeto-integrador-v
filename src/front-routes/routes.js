@@ -147,6 +147,10 @@ router.get('/checkout', (req, res) => {
     res.render('default/orders/checkout.html', { client: req.session.client[0] });
 });
 
+router.get('/admin/session/client', (req, res) => {
+    res.send({success: true, client: req.session.client[0] });
+});
+
 router.get('/login', (req, res) => {
     res.render('default/clients/login.html');
 });
