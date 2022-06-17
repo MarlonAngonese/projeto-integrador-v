@@ -1,6 +1,5 @@
 var cart = sessionStorage.getItem("cart");
 cart = JSON.parse(cart);
-console.log(cart);
 
 function toBrDigits (number) {
     return number.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' });

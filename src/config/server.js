@@ -20,6 +20,8 @@ const uploadGoogleDrive = require('../api/googledrive/auth')
 const cors = require('cors')
 
 const nodeoutlook = require('nodejs-nodemailer-outlook')
+const logger = require('../helpers/logger');
+
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3030;
 
@@ -39,7 +41,7 @@ app.use(bodyParser.urlencoded({   // to support URL-encoded bodies
 app.use(express.static('public'));
 
 app.listen(port, () => {
-    console.log('LISTEN ON PORT ' + port);
+    logger.log('info', 'LISTEN ON PORT ' + port);
 });
 
 // CONFIGURE SESSION
@@ -111,11 +113,11 @@ app.post('/register', (req, res) => {
     }
 
     client.save((err, client) => {
-        console.info(client.name + ' salvo');
+        logger.log('info', 'Client saved: ' + client);
         res.send('ok');
 
         if (err) {
-            console.error(err)
+            logger.log('error', 'Client saved error: ' + err);
         }
     })
 });
@@ -123,13 +125,12 @@ app.post('/register', (req, res) => {
 // SEND ORDER
 app.post('/insertOrders', (req, res) => {
     var order = new Orders(req.body);
-        console.log(req.body);
     order.save((err, order) => {
-        console.info(order + ' salvo');
+        logger.log('info', 'Order saved: ' + order);
         res.send({success: true});
 
         if (err) {
-            console.error(err)
+            logger.log('error', 'Order saved error: ' + err);
         }
     })
 });
@@ -145,7 +146,7 @@ app.post('/contact', (req, res) => {
         if (email && subject && description) {
             var contact = new Contacts(req.body);
             contact.save((err, contact) => {
-                console.info(contact.email + ' salvo');
+                logger.log('info', 'Contact saved: ' + contact);
 
                 // send email to Malotech
                 // nodeoutlook.sendEmail({
@@ -165,11 +166,9 @@ app.post('/contact', (req, res) => {
                 //     // text: answer,
                 //     replyTo: email,
                 //     onError: (e) => {
-                //         console.log("Error send email: ", e);
                 //         // res.send({success: false});
                 //     },
                 //     onSuccess: (i) => {
-                //         console.log("Success send email: ", i);
                 //         // res.send({success: true});
                 //     }
                 // });
@@ -192,11 +191,12 @@ app.post('/contact', (req, res) => {
                     // text: answer,
                     replyTo: 'malotechstore@outlook.com',
                     onError: (e) => {
-                        console.log("Error send email: ", e);
+                        logger.log('Error', 'Send e-mail to client error: ' + e);
+
                         // res.send({success: false});
                     },
                     onSuccess: (i) => {
-                        console.log("Success send email: ", i);
+                        logger.log('info', 'Send e-mail to client: ' + i);
                         // res.send({success: true});
                     }
                 });
@@ -204,6 +204,7 @@ app.post('/contact', (req, res) => {
                 return res.status(200).json({ success: true, result: contact, status: 200 });
             })
         } else {
+            logger.log('error', 'Missing informations on create contact');
             throw 'Ops, ocorreu um erro ao enviar, por favor, tente mais tarde.'
         }
     } catch (error) {
@@ -215,7 +216,7 @@ app.post('/contact', (req, res) => {
 app.post('/admin/categories/add', (req, res) => {
     var categories = new Categories(req.body);
     categories.save((err, categories) => {
-        console.info('Categoria ' + categories.name + ' salva');
+        logger.log('info', 'Category saved: ' + categories);
         res.send('ok');
     })
 });
@@ -228,8 +229,10 @@ app.post('/admin/categories/update/:id', async (req, res) => {
     category.slug = (req.body.slug != category.slug) ? req.body.slug : category.slug
 
     category.save().then(() => {
+        logger.log('info', 'Category updated: ' + category);
         res.send({ 'status': 200 })
     }).catch((err) => {
+        logger.log('error', 'Category updated error: ' + err);
         res.send({ 'status': 500 })
     });
 });
@@ -238,9 +241,11 @@ app.post('/admin/categories/update/:id', async (req, res) => {
 app.delete('/admin/category/delete/:id', (req, res) => {
     Categories.findOneAndRemove({ _id: req.params.id }, (err, obj) => {
         if (err) {
+            logger.log('error', 'Category removed error: ' + err);
             res.send('error');
         }
         res.send('ok');
+        logger.log('info', 'Category removed');
     });
 });
 
@@ -255,6 +260,7 @@ app.post('/insertProducts', cors(), uploader.array('images'), async (req, res) =
         let result = await uploadGoogleDrive(req.files);
 
         if (!result) {
+            logger.log('error', 'Error at upload image on Google Drive');
             throw "Não foi possível fazer o upload da imagem no Google Drive"
         }
 
@@ -262,8 +268,10 @@ app.post('/insertProducts', cors(), uploader.array('images'), async (req, res) =
 
         let product = new Products(req.body);
         product.save().then(() => {
+            logger.log('info', 'Product saved: ' + product);
             res.send({ 'status': 200 })
         }).catch((err) => {
+            logger.log('error', 'Product saved error: ' + err);
             res.send({ 'status': 500 })
         });
     } catch (err) {
@@ -281,6 +289,7 @@ app.post('/admin/products/update/:id', uploader.array('images'), async (req, res
             let result = await uploadGoogleDrive(req.files);
 
             if (!result) {
+                logger.log('error', 'Product updated error');
                 throw "Não foi possível fazer o upload da imagem no Google Drive"
             }
 
@@ -293,8 +302,10 @@ app.post('/admin/products/update/:id', uploader.array('images'), async (req, res
         product.description = (req.body.description != product.description) ? req.body.description : product.description
 
         product.save().then(() => {
+            logger.log('info', 'Product updated: ' + product);
             res.send({ 'status': 200 })
         }).catch((err) => {
+            logger.log('error', 'Product updated error: ' + err);
             res.send({ 'status': 500 })
         });
     } catch (err) {
@@ -306,8 +317,10 @@ app.post('/admin/products/update/:id', uploader.array('images'), async (req, res
 app.delete('/admin/products/delete/:id', (req, res) => {
     Products.findOneAndRemove({ _id: req.params.id }, (err, obj) => {
         if (err) {
+            logger.log('error', 'Product removed error: ' + err);
             res.send('error');
         }
+        logger.log('info', 'Product removed');
         res.send('ok');
     });
 });
@@ -320,9 +333,6 @@ app.post('/send', (req, res) => {
     var subject = req.body.subject;
     var description = req.body.description;
     var answer = req.body.answer;
-
-    console.log("email:", email);
-    console.log("answer:", answer);
 
     nodeoutlook.sendEmail({
         auth: {
@@ -341,13 +351,10 @@ app.post('/send', (req, res) => {
         // text: answer,
         replyTo: 'malotechstore@outlook.com',
         onError: (e) => {
-            console.log("Error send email: ", e),
+            logger.log('error', 'Send answer email error: ' + e);
             res.send({success: false});
         },
         onSuccess: (i) => {
-            console.log("Success send email: ", i);
-            console.log("id: ", id);
-
             const query  = Contacts.where({ _id: id });
             query.findOne(function (err, contact) {
                 if (contact) {
@@ -357,10 +364,10 @@ app.post('/send', (req, res) => {
                     contact.status = true;
                     
                     contact.save().then(() => {
-                        console.log("Contact Status updated");
+                        logger.log('info', 'Contact status updated');
                         // res.send({ 'status': 200 })
                     }).catch((err) => {
-                        console.log("Contact Status not updated");
+                        logger.log('error', 'Contact status updated error: ' + err);
                         // res.send({ 'status': 500 })
                     });
                 };
@@ -373,6 +380,8 @@ app.post('/send', (req, res) => {
             //         status: true
             //     }
             // })
+            logger.log('info', 'Send answer email: ' + i);
+
             res.send({success: true});
         }
     });

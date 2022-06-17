@@ -43,7 +43,6 @@ const uploadFile = async (imgs) => {
         return ids
 
     } catch (err) {
-        console.log('Erro ao fazer upload no Google Drive: ' + err)
         return false
     }
 }

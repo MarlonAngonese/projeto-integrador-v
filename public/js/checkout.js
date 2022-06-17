@@ -19,7 +19,6 @@ toastr.options = {
 var cart = sessionStorage.getItem("cart");
 var total = 0;
 cart = JSON.parse(cart);
-console.log(cart);
 
 function toBrDigits (number) {
     return number.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' });
@@ -110,7 +109,6 @@ function getOrderInfos(payment) {
           }
 
           createOrder(data);  
-          console.log(data);
         } else {
           return toastr["error"]("Pedido", "Ocorreu um erro ao realizar seu pedido, tente novamente mais tarde");
         }
@@ -123,7 +121,6 @@ function getOrderInfos(payment) {
 }
 
 function goToconfirmation(paymentType) {
-  console.log(paymentType);
   
   if (paymentType == "ticket") {
     getOrderInfos(paymentType);

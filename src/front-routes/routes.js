@@ -14,9 +14,9 @@ const Products = mongoose.model('products', ProductsSchema);
 
 // ----ADMIN ROUTES
 
-router.get('/admin', (req, res) => {
-    res.render('test.html')
-});
+// router.get('/admin', (req, res) => {
+//     res.render('test.html')
+// });
 
 // GET CATEGORY
 router.get('/admin/categories/list', async (req, res) => {
@@ -33,8 +33,6 @@ router.get('/admin/categories/add', (req, res) => {
 // GET CATEGORY EDIT
 router.get('/admin/categories/edit/:id', async (req, res) => {
     let category = await Categories.findOne({_id: req.params.id});
-
-    console.log(category)
 
     res.render('admin/categories/edit.category.html', {category: category})
 })
