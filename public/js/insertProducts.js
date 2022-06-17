@@ -58,7 +58,6 @@ $(document).ready(function() {
 
     // EXCLUIR ITENS DA TABELA
     $('.btn-remove').click(function () {
-        console.log($(this).attr('id'))
         $.ajax({
             url: '/admin/products/delete/' + $(this).attr('id'),
             type: 'delete',

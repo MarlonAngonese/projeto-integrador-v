@@ -6,8 +6,6 @@ function sendContact(event) {
     var description = $("#description-contact")[0].innerText;
     var answer = $("#description").val();
 
-    console.log("emial fornt: ", email);
-
     if (answer == "") {
         toastr["error"]("Campo resposta obrigatório");
         return;

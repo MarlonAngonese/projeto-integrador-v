@@ -312,7 +312,6 @@ $("#cep").keyup(function() {
             $("#complement").val("...");
 
             $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-                console.log(dados);
                 if (!("erro" in dados)) {
                     $("#address").val(dados.logradouro);
                     $("#neighborhood").val(dados.bairro);
