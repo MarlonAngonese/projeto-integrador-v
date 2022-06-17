@@ -2,22 +2,29 @@
 
 {% block styles %}
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/styles/base.css"> {% endblock %} {% block content %}
+<link rel="stylesheet" href="/styles/base.css"> 
+{% endblock %} 
+
+{% block content %}
 
 <div class="container" style="margin-top: 2%">
-    <h1 class="display-6 text-center">Responder contato</h1>
+    <h1 class="display-6 text-center">Responder contato {{ contact.email }}</h1>
+    <b id="client-id">{{ contact._id }}</b>
     <form onsubmit="sendContact(event)">
 
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
+            <span id="email-contact">{{contact.email}}</span>
         </div>
 
         <div class="mb-3">
             <label for="subject" class="form-label">Assunto:</label>
+            <span id="subjec-contact">{{ contact.subject }}</span>
         </div>
 
         <div class="mb-3">
             <label for="request" class="form-label">Solicitação do cliente:</label>
+            <span id="description-contact">{{ contact.description }}</span>
         </div>
 
         <div class="mb-3">
@@ -43,9 +50,11 @@
 	</ul> -->
 
 
-{% endblock %} {% block script %}
+{% endblock %} 
+
+{% block script %}
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-<script src="/js/contact.js" charset="utf-8"></script>
+<script src="/js/answerContact.js" charset="utf-8"></script>
 {% endblock %}

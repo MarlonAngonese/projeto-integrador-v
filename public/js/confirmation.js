@@ -28,6 +28,8 @@ function showItemsCheckout () {
       // $('#cart').append('<p>Total <strong>' + toBrDigits(total) + '</strong></p>');
 
       showCartItems();
+
+      sessionStorage.setItem("cart", JSON.stringify(''));
     }
   }
 

@@ -83,7 +83,7 @@ function createOrder(data) {
             toastr["success"]("Pedido enviado com sucesso!");
 
             return setTimeout(() => {
-              window.location.href = "/";
+              window.location.href = "/confirmation";
             }, 1500)
         }
 
