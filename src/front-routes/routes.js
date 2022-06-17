@@ -81,8 +81,17 @@ router.get('/admin/products/edit/:id', async (req, res) => {
     res.render('admin/products/edit.product.html', {product: product[0], categories: all_categories});
 });
 
-router.get('/admin/contacts/answer', (req, res) => {
-    res.render('admin/contacts/answer.contact.html');
+router.get('/admin/contacts/answer/:id', (req, res) => {
+    // let contact = Contacts.findOne({_id: req.params.id});
+
+    const query  = Contacts.where({ _id: req.params.id });
+    
+    query.findOne(function (err, contact) {
+        if (contact) {
+            res.render('admin/contacts/answer.contact.html', {contact: contact});
+        };
+    });
+
 });
 
 router.get('/admin/contacts/list', async(req, res) => {

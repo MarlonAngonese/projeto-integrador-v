@@ -12,11 +12,14 @@ const OrdersSchema = require('../schemas/orders');
 const routes = require('../front-routes/routes');
 const md5 = require('md5');
 const session = require('express-session');
+const nodemailer = require('nodemailer');
 
 const uploader = require('../middleware/uploaderImg')
 const uploadGoogleDrive = require('../api/googledrive/auth')
 
 const cors = require('cors')
+
+const nodeoutlook = require('nodejs-nodemailer-outlook')
 // SERVER CONFIGURATION
 var port = process.env.PORT || 3030;
 
@@ -143,6 +146,61 @@ app.post('/contact', (req, res) => {
             var contact = new Contacts(req.body);
             contact.save((err, contact) => {
                 console.info(contact.email + ' salvo');
+
+                // send email to Malotech
+                // nodeoutlook.sendEmail({
+                //     auth: {
+                //         user: "malotechstore@outlook.com",
+                //         pass: "Malotech2022"
+                //     },
+                //     from: 'malotechstore@outlook.com',
+                //     to: 'malotechstore@outlook.com',
+                //     subject: subject,
+                //     html:   '<div style="justify-content-center; text-align: center;">'+
+                //                 '<div><h2>Malotech Store</h2></div>'+
+                //                 '<div style="margin-bottom: 10px;"><h4>'+email+' entrou em contato!</h4></div>'+
+                //                 '<div><b>Descrição do chamado:</b></div>'+
+                //                 '<div><span>'+description+'</span></div>'+
+                //             '</div>',
+                //     // text: answer,
+                //     replyTo: email,
+                //     onError: (e) => {
+                //         console.log("Error send email: ", e);
+                //         // res.send({success: false});
+                //     },
+                //     onSuccess: (i) => {
+                //         console.log("Success send email: ", i);
+                //         // res.send({success: true});
+                //     }
+                // });
+                
+                // send email to Client
+                nodeoutlook.sendEmail({
+                    auth: {
+                        user: "malotechstore@outlook.com",
+                        pass: "Malotech2022"
+                    },
+                    from: 'malotechstore@outlook.com',
+                    to: email,
+                    subject: 'Malotech Store - Recebemos seu contato',
+                    html:   '<div style="justify-content-center; text-align: center;">'+
+                                '<div><h2>Malotech Store</h2></div>'+
+                                '<div style="margin-bottom: 10px;"><h4>Olá, recebemos seu chamado em nosso site!</h4></div>'+
+                                '<div style="margin-bottom: 10px;"><h4>Nossa equipe irá analisar e em breve iremos retornar uma resposta.</h4></div>'+
+                                '<div><b>Equipe Malotech</b></div>'+
+                            '</div>',
+                    // text: answer,
+                    replyTo: 'malotechstore@outlook.com',
+                    onError: (e) => {
+                        console.log("Error send email: ", e);
+                        // res.send({success: false});
+                    },
+                    onSuccess: (i) => {
+                        console.log("Success send email: ", i);
+                        // res.send({success: true});
+                    }
+                });
+                
                 return res.status(200).json({ success: true, result: contact, status: 200 });
             })
         } else {
@@ -251,6 +309,72 @@ app.delete('/admin/products/delete/:id', (req, res) => {
             res.send('error');
         }
         res.send('ok');
+    });
+});
+
+
+// Envio de email
+app.post('/send', (req, res) => {
+    var id = req.body.id;
+    var email = req.body.email;
+    var subject = req.body.subject;
+    var description = req.body.description;
+    var answer = req.body.answer;
+
+    console.log("email:", email);
+    console.log("answer:", answer);
+
+    nodeoutlook.sendEmail({
+        auth: {
+            user: "malotechstore@outlook.com",
+            pass: "Malotech2022"
+        },
+        from: 'malotechstore@outlook.com',
+        to: email,
+        subject: 'Resposta de solicitação - Malotech',
+        html:   '<div style="justify-content-center; text-align: center;">'+
+                    '<div><h3>Malotech Store</h3></div>'+
+                    '<div style="margin-bottom: 10px;"><h4>Recebemos sua solicitação!</h4></div>'+
+                    '<div style="margin-bottom: 10px;"><h4>'+subject+'</h4></div>'+
+                    '<div><b>'+answer+'</b></div>'+
+                '</div>',
+        // text: answer,
+        replyTo: 'malotechstore@outlook.com',
+        onError: (e) => {
+            console.log("Error send email: ", e),
+            res.send({success: false});
+        },
+        onSuccess: (i) => {
+            console.log("Success send email: ", i);
+            console.log("id: ", id);
+
+            const query  = Contacts.where({ _id: id });
+            query.findOne(function (err, contact) {
+                if (contact) {
+                    // contact.email = email;
+                    // contact.subject = subject;
+                    // contact.description = description;
+                    contact.status = true;
+                    
+                    contact.save().then(() => {
+                        console.log("Contact Status updated");
+                        // res.send({ 'status': 200 })
+                    }).catch((err) => {
+                        console.log("Contact Status not updated");
+                        // res.send({ 'status': 500 })
+                    });
+                };
+            });
+
+            // Contacts.updateOne({
+            //     _id: 'ObjectId("'+id+'")'
+            // }, {
+            //     $set: {
+            //         status: true
+            //     }
+            // })
+            res.send({success: true});
+        }
     });
 });
 
