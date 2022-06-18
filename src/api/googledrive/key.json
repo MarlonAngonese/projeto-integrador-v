@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "lojainformatica",
+  "private_key_id": "a45adfb890bdaf0c821470fe841b1c2f002161d6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDcOnrRlZtJ0XVP\npIq++gS6KuY6TJhHU+1NJ4rs3QbkPGOM1MpU1tiqXQ3KPIk4RlQUBNRPYISnfL7n\nmpC0BWd/jVfgqwRA/ND+QQmZtTtpKNW3862xEXqGY6e5Wkla/L36ehywVhVhSp7m\njScaeQP9/i3agyulVBwrX1K75c4fHZ/1KQiL1SE98rTZuX7dhssB6EPSnJaNjldw\nijbamkwfjWQfU2Z01ZH+V7vhdSTAXSf+TKg4ECYj00Ytb4aeZtGlndyGjtFFrxyt\nQP5OT9ix0rvXnMbjRVEqiqHlgeVU9wZyScCXhE7WKZPtEcATwhqjE7Lqnf24RSQG\ntINFL1qlAgMBAAECggEAFC2chrr/MzSIm98+4jAswjT/irxtYG2xarYSjdDTmpJo\n6aSulDbqO7PSeWLyDLCu7/WgUVSN2v28TSK1mvT6zm5QLLLmrSCs8nrZixaWprQ5\n3sSqN7TbBdi4K6y412gcbQiGu+ZrR5KLfCLXQB7x7XH+WAzYMSoDebrebP5plCKa\nYR5ExwIJSIZP0VMXZcXWgMwKlixvd96bqlck3BVVk0vQkdPCcruIaHDgx+dRjhui\nrPk3I3Ln+U72WRQuaeFnrAM44iYlp348Y0crw6go/M/JngywlnK3J+gMdQpWOXTC\nTbknO3/rSC4qtOyj6WabunCMtJTbG9uZ92GmZRiKQQKBgQD+mV+GRJf7GjpBQcGa\nbfPtZ894DlZ/FWxw4Pcgy1hEbISN10lyXL+wWbW2+JVA87vhP1J9u4SnsU4wQU//\nSF7OwprmFjkzaOJ2ba40Tv2sWhc0bqgTfZmh57d0On6uecCZLPiu1kfv6qSBor2L\narxnrfWc+QLwJ9B9yuMxu0UKwQKBgQDdcLE5JqojZdRXFnQSkghJRrnumWqGr3+o\n2hVtgubwJlcFV5NAcHbdhPywn3/D2V59jn9g3lJTlNpNWqMYGql7MJC7cLo9HJ1q\nzopV1Hpm4P+w++i5yUT/sYisKq+Du3Zi7tvlCXtDffzEpuQ6B7238YkAvSzcL64+\nRiazUUe85QKBgB+RaNS/IJET+XEp9BVv2LTxEDp0nKj5QQ7l9f5s+C7TvcPQk9zI\nP0RgezWKsQbysbMGJPZOD+6y/1zgXEjs8kR0wLwSuVj0gk/o3ZbCzJVYPlRT/Cce\nhbQbhRW2QwrjMcxMVTFohFbtIySnxxTIUUARw8iI36JjbWiLhYwfCjqBAoGBAI42\ndorWqwPKvQElGWxnvsyYkIaMnp5bDWh6jrJjFD98z/xNTvNehugjJUmlVZ+I9Sc7\nodCrV0H4Ye612/J6BQhpmznV3rWqr+pNNQiESgvSSkP2tHLEsPxpnvW7ADdg6FoH\nPs+sNC6XNgNxjzc5i30bsLn5xFqwgH3b/bTB6YmFAoGBAOxik7UIs6CRDEnPjWPE\naqXX1GAP4ja803tfVzC9e16MslyySCkYMg9bpaFpdQw+VDpVpbXNRRdLtAU5jvXi\nG5lWkE4WGZCBw77i/IewTNCRiV2Fpfv9V9IuoNcbj1GGmYSZAlgfI/eD9BG1xHtD\ntECLIslp1rgKalXIlxmbohhI\n-----END PRIVATE KEY-----\n",
+  "client_email": "google-drive-api@lojainformatica.iam.gserviceaccount.com",
+  "client_id": "113276264487612262745",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/google-drive-api%40lojainformatica.iam.gserviceaccount.com"
+}
+  

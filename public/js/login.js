@@ -15,11 +15,8 @@ $(document).ready(function() {
             cache: false,
             data: JSON.stringify(data),
             success: function(res){
-                if (res.status == 200) {
-                    toastr["success"]("Login ", "Bem vindo " + res.client[0].name);      
-                    return setTimeout(() => {
-                        location.href = "/cart"
-                    }, 1500)
+                if (res.status == 200) {     
+                    return location.href = "/cart"
                 }
 
                 return toastr["error"]("Login ", "E-mail ou senha incorretos. Tente novamente!");

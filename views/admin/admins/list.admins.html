@@ -1,0 +1,46 @@
+{% extends '../template.html' %}
+
+{% block title %}
+Listar Administradores
+{% endblock %}
+
+{% block content %}
+
+<div class="w-75 mx-auto">
+    <table class="table table-striped">
+        <div class="mt-5 row">
+            <h2 class="display-6 mt-4 mb-4 col-8">ADMINISTRADORES</h2>
+            <div class="col-4">
+                <a class="btn btn-success float-right w-75" style="margin-top: 12%;" href="/admin/admins/add">Novo Administrador</a>
+            </div>
+        </div>
+
+        <thead class="thead-dark">
+            <tr class="row">
+                <th scope="col" class="col-9">Nome</th>
+                <th scope="col" class="col-3 d-flex justify-content-center">Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for admin in admins %}
+            <tr class="row align-middle" style="line-height: 30px;">
+                <td class="col-9 align-middle text-truncate">{{ admin.name }}</td>
+                <td class="col-3 align-middle text-truncate d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger btn-remove" style="width: 40%;" id="{{ admin._id }}">Excluir</button>
+                </td>
+            </tr>
+            {% else %}
+                <tr class="row align-middle">
+                    <td class="col-12 align-middle d-flex justify-content-center">Não há registros</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block script %}
+  	<script src="/js/admins.js" charset="utf-8"></script>
+{% endblock %}

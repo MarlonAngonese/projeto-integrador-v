@@ -9,7 +9,7 @@
     <!-- aqui é a criação do usuario e login-->
 
 {% block content %}
-<div>
+<div style="height: 85vh">
     <section class="h-100">
         <div class="container h-100">
             <div class="row justify-content-sm-center h-100">
@@ -32,9 +32,6 @@
                                 <div class="mb-3">
                                     <div class="mb-2 w-100">
                                         <label class="text-muted" for="password">Senha</label>
-                                        <a href="recover.html" class="float-end">
-                                            Esqueceu a senha?
-                                        </a>
                                     </div>
                                     <input id="password" type="password" class="form-control" name="password" required>
                                     <div class="invalid-feedback">
@@ -51,7 +48,7 @@
                         </div>
                         <div class="card-footer py-3 border-0">
                             <div class="text-center">
-                                Não possui conta? <a href="register.html" class="text-dark">Criar Conta</a>
+                                Não possui conta? <a href="/register" class="text-dark">Criar Conta</a>
                             </div>
                         </div>
                     </div>

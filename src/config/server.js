@@ -9,6 +9,7 @@ const ContactsSchema = require('../schemas/contact');
 const CategoriesSchema = require('../schemas/categories');
 const ProductsSchema = require('../schemas/products');
 const OrdersSchema = require('../schemas/orders');
+const AdminsSchema = require('../schemas/admins')
 const routes = require('../front-routes/routes');
 const md5 = require('md5');
 const session = require('express-session');
@@ -59,6 +60,7 @@ const Clients = mongoose.model('clients', ClientsSchema);
 const Contacts = mongoose.model('contact', ContactsSchema);
 const Categories = mongoose.model('categories', CategoriesSchema);
 const Products = mongoose.model('products', ProductsSchema);
+const Admins = mongoose.model('admins', AdminsSchema);
 const Orders = mongoose.model('orders', OrdersSchema);
 
 // CONFIG CATEGORIES
@@ -210,6 +212,43 @@ app.post('/contact', (req, res) => {
     } catch (error) {
         return res.json({ success: false, message: error, status: 500 });
     }
+});
+
+// LOGIN ADMIN POST
+app.post('/admin/login', async (req, res) => {
+    resultado = await Admins.find({ //pesquisa em clientes os dados do formulario
+        email: req.body.email,
+        password: md5(req.body.password) //pesquisa senha criptografada
+    }).limit(1).exec();
+
+    if (resultado.length == 0) { //confere se encontrou pelo menos um usuario com os dados do login 
+        res.send({ 'status': 500 })
+    } else {
+        req.session.admin = resultado;
+        res.send({ 'status': 200, 'admin': req.session.admin })
+    }
+});
+
+// POST ADMINS
+app.post('/admin/admins/add', (req, res) => {
+    req.body.password = md5(req.body.password);
+    var admins = new Admins(req.body);
+    admins.save((err, admins) => {
+        logger.log('info', 'Admin saved: ' + admins);
+        res.send('ok');
+    })
+});
+
+// DELETE ADMIN
+app.delete('/admin/admins/delete/:id', (req, res) => {
+    Admins.findOneAndRemove({ _id: req.params.id }, (err, obj) => {
+        if (err) {
+            logger.log('error', 'Administrator removed error: ' + err);
+            res.send('error');
+        }
+        res.send('ok');
+        logger.log('info', 'Aministrador removed');
+    });
 });
 
 // POST CATEGORY
