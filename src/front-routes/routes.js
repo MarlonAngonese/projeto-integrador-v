@@ -134,8 +134,19 @@ router.get('/', (req, res) => {
     res.redirect('/home');
 });
 
-router.get('/home', (req, res) => {
-    res.render('default/home.html');
+router.get('/home', async (req, res) => {
+    let all_categories = await Categories.aggregate([
+        {
+            $lookup: {
+                from: "products",
+                localField: "_id",
+                foreignField: "category",
+                as: "products"
+            }
+        }
+    ])
+
+    res.render('default/home.html', {categories: all_categories});
 });
 
 router.get('/register', (req, res) => {
