@@ -103,8 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-# Internal Key.json
-src/api/googledrive/key.json
-
 # Images on Upload
 tmp/upload/*
