@@ -139,10 +139,29 @@ router.get('/admin/contacts/answer/:id', authCheckerLogin, (req, res) => {
 
 });
 
+router.get('/admin/orders/view/:id', authCheckerLogin, (req, res) => {
+    // let contact = Contacts.findOne({_id: req.params.id});
+
+    const query  = Orders.where({ _id: req.params.id });
+    
+    query.findOne(function (err, order) {
+        if (order) {
+            res.render('admin/orders/view.order.html', {order: order});
+        };
+    });
+
+});
+
 router.get('/admin/contacts/list', authCheckerLogin, async(req, res) => {
     let all_contacts = await Contacts.find()
 
     res.render('admin/contacts/list.contacts.html', {'contacts': all_contacts});
+});
+
+router.get('/admin/orders/list', authCheckerLogin, async(req, res) => {
+    let all_orders = await Orders.find()
+
+    res.render('admin/orders/list.orders.html', {'orders': all_orders});
 });
 
 // router.get('/admin/c/:slug', (req, res) => {

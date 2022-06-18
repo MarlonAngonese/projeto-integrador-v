@@ -1,0 +1,64 @@
+{% extends '../template.html' %}
+
+{% block content %}
+<div class="w-75 mx-auto">
+    <table class="table table-striped">
+        <div class="mt-5">
+            <h2 class="display-6 mt-4 mb-4">LISTA DE PEDIDOS</h2>
+            <div id="list-products"></div>
+        </div>
+        <thead class="thead-dark">
+            <tr class="row">
+                <th scope="col" class="col-3">Pagamento</th>
+                <th scope="col" class="col-3">Produtos</th>
+                <th scope="col" class="col-3">Id Cliente</th>
+                <th scope="col" class="col-3 d-flex justify-content-center">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr class="row align-middle">
+                    <td class="col-3 align-middle text-truncate">
+                        {% if order.payment %}
+
+                            {% if order.payment == 'ticket' %}
+                                Boleto
+                            {% endif %}
+
+                            {% if order.payment == 'pix' %}
+                                Pix
+                            {% endif %}
+
+                            {% if order.payment == 'card' %}
+                                Cartão de crédito
+                            {% endif %}
+
+                        {% else %}
+                            Não Identificado
+                        {% endif %}
+                    </td>
+                    <td class="col-3 align-middle text-truncate">{{ order.products[0].name }} +...</td>
+                    <td class="col-3 align-middle text-truncate">{{ order.client }}</td>
+
+                    <td class="col-3 align-middle text-truncate d-flex justify-content-center">
+                        <a href="/admin/orders/view/{{order._id}}" class="btn btn-warning">Ver detalhes</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr class="row align-middle">
+                    <td class="col-12 align-middle d-flex justify-content-center">Não há registros</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block title %}
+Lista de Pedidos
+{% endblock %}
+
+{% block script %}
+<script src="/js/ordersAdmin.js" charset="utf-8"></script>
+{% endblock %}

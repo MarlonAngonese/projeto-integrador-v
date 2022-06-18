@@ -1,0 +1,82 @@
+{% extends '../template.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/styles/base.css"> 
+{% endblock %} 
+
+{% block content %}
+
+<div class="container" style="margin-top: 2%">
+    <h1 class="display-6 text-center">Pedido <b>{{ order._id }}</b></h1>
+    
+    <div class="mb-3">
+        <label for="email" class="form-label">Id Cliente:</label>
+        <span id="">{{order.client}}</span>
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Pagamento:</label>
+        <span id="">
+            {% if order.payment %}
+
+                {% if order.payment == 'ticket' %}
+                    Boleto
+                {% endif %}
+
+                {% if order.payment == 'pix' %}
+                    Pix
+                {% endif %}
+
+                {% if order.payment == 'card' %}
+                    Cartão de crédito
+                {% endif %}
+
+            {% else %}
+                Não Identificado
+            {% endif %}
+        </span>
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Produtos:</label>
+        <span id="">
+            {% if order.products %}
+
+                {% for product in order.products %}
+                    <li class="" title="{{ item.name }}">Produto: {{ product.name }}</li>
+                    <li class="" title="{{ item.name }}">Preço: {{ product.price }}</li>
+                    <li class="" title="{{ item.name }}">Id Produto: {{ product._id }}</li>
+                    <li class="" title="{{ item.name }}">Id Categoria: {{ product.category }}</li>
+                    <li class="" title="{{ item.name }}">Url da Imagem: {{product.url[0]}}</li>
+                    <hr>
+                {% endfor %}
+
+            {% else %}
+                Não Identificado
+            {% endif %}
+        </span>
+    </div>
+
+</div>
+
+
+<!-- <br>
+    <span>Textos</span>
+    <ul class="">
+		{% for item in texts %}
+		<li>
+			<p class="" title="{{ item.name }}">{{ item.info }}</p>
+		</li>
+		{% endfor %}
+	</ul> -->
+
+
+{% endblock %} 
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+<!-- <script src="/js/answerContact.js" charset="utf-8"></script> -->
+{% endblock %}
