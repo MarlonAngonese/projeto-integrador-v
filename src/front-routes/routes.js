@@ -181,18 +181,18 @@ router.get('/admin/orders/list', authCheckerLogin, async(req, res) => {
 // });
 
 // SEARCH PRODUCTS
-// router.get('/admin/search', (req, res) => {
-//     const query = req.query.q;
-//     let cond = [];
-//     let queryObj = {};
+router.get('/search', (req, res) => {
+    const query = req.query.q;
+    let cond = [];
+    let queryObj = {};
 
-//     if (query && query.length > 0) {
-//         queryObj = { "name": { "$regex": query, "$options": "i" } };
-//     }
-//     Products.find(queryObj).sort([cond]).exec((err, products) => {
-//         res.render('products/list.products.html', { products: products, q: query });
-//     });
-// });
+    if (query && query.length > 0) {
+        queryObj = { "name": { "$regex": query, "$options": "i" } };
+    }
+    Products.find(queryObj).sort([cond]).exec((err, products) => {
+        res.render('default/products/list.products.html', { products: products, q: query });
+    });
+});
 
 
 // ----DEFAULT ROUTES
