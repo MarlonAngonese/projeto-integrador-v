@@ -49,7 +49,7 @@ Abrir o prompt de comando e seguir os seguintes passos:
  # Inicializar repositório
  $ git init
  # Clonar o repositório
- $ git clone https://github.com/renanandreola/Projeto-Integrador-III.git
+ $ git clone https://github.com/MarlonAngonese/projeto-integrador-v.git
 # Entrar no diretório
 # Instalar as dependências
  $ npm install
