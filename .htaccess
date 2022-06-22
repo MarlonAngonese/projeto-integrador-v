@@ -1,0 +1,2 @@
+RewriteCond %{HTTP_HOST} ^projeto-integrador-v.herokuapp.com
+RewriteRule ^(.*) https://malotech.com.br [P]
